@@ -33,18 +33,18 @@ those of my opponents
 - As a user, I want to be able to purchase cards
 from an arbitrarily-sized deck and add them to
 my arbitrarily-sized collection
-- As a user, I want to be able to save the current
-game state and reload my game later on
-
-## Stretch Goals
 - As a user, I want to be able to "roll" dice
-  and have them resolve to their correct effects
+    and have them resolve to their correct effects
   - Includes gaining victory points, dealing
-  damage, healing, gaining energy
+    damage, healing, gaining energy
 - As a user, I want to be able to re-roll an
   arbitrary number of dice
+
+## Stretch Goals
 - As a user, I want to have a "turn" system that
 still allows for out-of-turn effects
 - As a user, I want to win when either all other
 players are dead or once I reach a certain 
 number of victory points
+- As a user, I want to be able to save the current
+  game state and reload my game later on
