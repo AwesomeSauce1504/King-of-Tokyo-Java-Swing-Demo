@@ -31,6 +31,7 @@ public class Shop {
         // draw new card from deck and add it to shop in that position
     }
 
+    // REQUIRES: deck.size() >= 3
     // MODIFIES: this
     // EFFECTS: empties availableCards and draws cards from deck to fill availableCards up to SHOP_SIZE
     public void reroll() {
@@ -42,5 +43,9 @@ public class Shop {
 
     public List<Card> getAvailableCards() {
         return availableCards;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 }

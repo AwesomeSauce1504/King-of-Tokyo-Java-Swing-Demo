@@ -8,6 +8,7 @@ public class Player {
     public static final int MAX_HEALTH = 10;
     public static final int MAX_VP = 20;
     private int health;
+    private int victoryPoints;
     private int energy;
     private boolean isInTokyo;
     private int playerNumber;
@@ -20,20 +21,37 @@ public class Player {
     public Player(int playerNumber) {
         this.playerNumber = playerNumber;
         this.health = 10;
+        this.victoryPoints = 0;
         this.energy = 0;
         this.isInTokyo = false;
         this.ownedCards = new ArrayList<Card>();
         this.diceAmount = 8;
-        /* this.playerDice = new ArrayList<Die>();
-        for (int i = 0; i < 8; i++) {
-            this.playerDice.add(new Die());
-        } */
     }
 
     // EFFECTS: returns true if Player has enough energy to buy Card c
     public boolean canAfford(Card c) {
         return energy >= c.getCost();
     }
+
+    public void changeEnergy(int amount) {
+        energy += amount;
+    }
+
+    public void addCard(Card c) {
+        ownedCards.add(c);
+    }
+
+    /*public boolean getIsInTokyo() {
+        return isInTokyo;
+    }*/
+
+    /*public void changeHealth(int amount) {
+        health += amount;
+    }*/
+
+    /* public void changeIsInTokyo(boolean state) {
+        isInTokyo = state;
+    } */
 
     public int getHealth() {
         return health;
@@ -43,28 +61,8 @@ public class Player {
         return energy;
     }
 
-    public boolean getIsInTokyo() {
-        return isInTokyo;
-    }
-
-    public void changeHealth(int amount) {
-        health += amount;
-    }
-
-    public void changeEnergy(int amount) {
-        energy += amount;
-    }
-
-    public void changeIsInTokyo(boolean state) {
-        isInTokyo = state;
-    }
-
     public List<Card> getOwnedCards() {
         return ownedCards;
-    }
-
-    public void addCard(Card c) {
-        ownedCards.add(c);
     }
 
     public void setOwnedCards(List<Card> ownedCards) {
@@ -77,5 +75,21 @@ public class Player {
 
     public void setDiceAmount(int diceAmount) {
         this.diceAmount = diceAmount;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public void setVictoryPoints(int victoryPoints) {
+        this.victoryPoints = victoryPoints;
     }
 }

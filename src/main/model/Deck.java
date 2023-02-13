@@ -6,7 +6,7 @@ import java.util.List;
 
 // Represents a collection (deck) of card objects
 public class Deck {
-    private static final Card[] ALL_EXISTING_CARDS = {
+    public static final Card[] ALL_EXISTING_CARDS = {
             new Card("Name1", 1, "TEST1", false),
             new Card("Name2", 2, "TEST2", false),
             new Card("Name3", 3, "TEST3", true),
@@ -24,21 +24,6 @@ public class Deck {
     public Deck() {
         this.cardsInDeck = new ArrayList<Card>();
         Collections.addAll(cardsInDeck, ALL_EXISTING_CARDS);
-
-        // FOR DEBUGGING ONLY
-        /* for (Card c: cardsInDeck) {
-            System.out.println(c.getCost());
-            System.out.println(c.getEffectsText());
-            System.out.println(c.getIsKeep());
-        } */
-
-        // keep this part
-        Collections.shuffle(cardsInDeck);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: randomize the positions of cards in the deck
-    private void shuffleDeck() {
         Collections.shuffle(cardsInDeck);
     }
 
@@ -51,10 +36,7 @@ public class Deck {
         return topCard;
     }
 
-    // REQUIRES: Deck is not empty
-    // EFFECTS: returns the first item in the Deck
-    private Card peekTopCard() {
-        Card topCard = cardsInDeck.get(0);
-        return topCard;
+    public List<Card> getCardsInDeck() {
+        return this.cardsInDeck;
     }
 }

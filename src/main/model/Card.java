@@ -7,6 +7,7 @@ public class Card {
     private String effectsText;
     private boolean isKeep;
 
+    // Creates a card with a name, cost to buy, effects, and if it is a keep card or not
     public Card(String name, int cost, String effectsText, boolean isKeep) {
         this.name = name;
         this.cost = cost;

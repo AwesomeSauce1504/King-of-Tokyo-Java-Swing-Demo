@@ -13,6 +13,7 @@ public class DieCollection {
     private int numberOfHeals;
     private int numberOfEnergies;
 
+    // Create a DieCollection containing numOfDice dice and set the count of roll results to 0
     public DieCollection(int numOfDice) {
         diceList = new ArrayList<Die>();
 
@@ -27,15 +28,14 @@ public class DieCollection {
         numberOfEnergies = 0;
     }
 
-
     public void rollAllDice() {
         for (Die d : diceList) {
             d.rollDie();
         }
-        getDiceResults();
+        updateDiceResults();
     }
 
-    private void getDiceResults() {
+    private void updateDiceResults() {
         numberOfOnes = 0;
         numberOfTwos = 0;
         numberOfThrees = 0;
@@ -56,8 +56,6 @@ public class DieCollection {
                 numberOfHeals++;
             } else if (d.getValue() == Die.ENERGY) {
                 numberOfEnergies++;
-            } else {
-                System.out.println("Die value invalid");
             }
         }
     }

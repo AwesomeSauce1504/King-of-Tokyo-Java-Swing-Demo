@@ -3,29 +3,24 @@ package ui;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 // Main game application
 public class Game {
-    private Deck powerCardDeck; // deck
-    private Shop cardShop; // shop
+    public static final int MAX_REROLLS = 3;
+    private Deck powerCardDeck;
+    private Shop cardShop;
     // Tokyo board
-    private List<Player> playersInGame; // Players
+    private List<Player> playersInGame;
     private Scanner input;
     private int numPlayers;
     private int currentPlayerNumber;
     private Player currentPlayer;
     private int rerollsUsed;
-    private int numberOfOnes;
-    private int numberOfTwos;
-    private int numberOfThrees;
-    private int numberOfAttacks;
-    private int numberOfHeals;
-    private int numberOfEnergies;
     private DieCollection allDice;
     private boolean gameIsRunning;
-    public static final int MAX_REROLLS = 3;
 
     public Game() {
         runGame();
@@ -51,6 +46,7 @@ public class Game {
         // some while loop to keep the game loop going
         while (gameIsRunning) {
             resetValues();
+            displayPlayers();
             System.out.println("It is Player " + (currentPlayerNumber + 1) + "'s turn!");
             // check for eliminations
             diceRollPhase();
@@ -64,9 +60,9 @@ public class Game {
             // shop
             // check for eliminations
             // end and loop
+            System.out.println("Would you like to exit game? (Enter e to exit)");
             strCommand = input.next();
-            processStringCommand(strCommand);
-
+            askIfWantToExit(strCommand);
 
             // gameIsRunning = false; // TEMP FOR TESTING
             if (gameIsOver()) {
@@ -115,24 +111,32 @@ public class Game {
                 System.out.println("Leaving shop!");
                 checkingForValidInput = false;
             } else if (command.equals("r")) {
-                System.out.println("Rerolling!");
-                cardShop.reroll();
+                tryToReroll();
             } else {
                 System.out.println("Invalid input");
             }
         }
-        System.out.println(currentPlayer.getOwnedCards());
     }
 
     private void tryToBuyCard(String s, int i) {
         System.out.println("Trying to buy card " + s);
         if (currentPlayer.canAfford(cardShop.getAvailableCards().get(i))) {
-            System.out.println("Buying card " + s + ":" + cardShop.getAvailableCards().get(i).getName() + "!");
+            System.out.println("Buying card " + s + ": " + cardShop.getAvailableCards().get(i).getName() + "!");
             currentPlayer.changeEnergy(-cardShop.getAvailableCards().get(i).getCost());
             currentPlayer.addCard(cardShop.buyCard(i));
             System.out.println("Your total energy is now " + currentPlayer.getEnergy());
         } else {
             System.out.println("Can't afford this card");
+        }
+    }
+
+    private void tryToReroll() {
+        System.out.println("Trying to reroll");
+        if (currentPlayer.getEnergy() >= cardShop.REROLL_COST) {
+            System.out.println("Rerollling!");
+            cardShop.reroll();
+        } else {
+            System.out.println("Can't reroll: not enough energy");
         }
     }
 
@@ -148,40 +152,42 @@ public class Game {
         return playersInGame.size() <= 1;
     }
 
+    private void displayPlayers() {
+        System.out.println("--- Player statuses ---");
+        for (Player player : playersInGame) {
+            System.out.println("Player " + (player.getPlayerNumber() + 1) + ": ");
+            System.out.print("Health: " + player.getHealth() + " ");
+            System.out.print("VPs: " + player.getVictoryPoints() + " ");
+            System.out.print("Energy: " + player.getEnergy() + " \n");
+            for (Card card: player.getOwnedCards()) {
+                System.out.println("\t" + card.getName() + ": " + card.getEffectsText());
+            }
+        }
+        System.out.println("-----------------------");
+    }
+
     private void displayShop() {
         System.out.println("Here's what is available in the shop:");
         for (int i = 0; i < Shop.SHOP_SIZE; i++) {
-            System.out.println("Card " + (i + 1) + " ");
+            // System.out.println("Card " + (i + 1) + " ");
             System.out.print("Cost: " + cardShop.getAvailableCards().get(i).getCost() + " ");
             if (cardShop.getAvailableCards().get(i).getIsKeep()) {
-                System.out.print("Type: KEEP");
+                System.out.print("Type: KEEP ");
             } else {
-                System.out.println("Type: DISCARD");
+                System.out.print("Type: DISCARD ");
             }
             System.out.print("Effects: " + cardShop.getAvailableCards().get(i).getEffectsText() + "\n");
         }
     }
 
-
-    private void checkEnterTokyo() {
-        // stub
-    }
-
     private void resetValues() {
         input = new Scanner(System.in);
         rerollsUsed = 0;
-        numberOfOnes = 0;
-        numberOfTwos = 0;
-        numberOfThrees = 0;
-        numberOfAttacks = 0;
-        numberOfHeals = 0;
-        numberOfEnergies = 0;
         allDice = new DieCollection(currentPlayer.getDiceAmount());
     }
 
     private void resolveDice() {
         printDiceResults();
-        // getDiceResults();
         // resolve ones
         // resolve twos
         // resolve threes
@@ -205,43 +211,11 @@ public class Game {
         System.out.print("and " + allDice.getNumberOfEnergies() + " x [energy] \n");
     }
 
-    /* private void getDiceResults() {
-        numberOfOnes = 0;
-        numberOfTwos = 0;
-        numberOfThrees = 0;
-        numberOfAttacks = 0;
-        numberOfHeals = 0;
-        numberOfEnergies = 0;
-
-        for (Die d : allDice.getDiceList()) {
-            if (d.getValue() == Die.ONE_VP) {
-                numberOfOnes++;
-            } else if (d.getValue() == Die.TWO_VP) {
-                numberOfTwos++;
-            } else if (d.getValue() == Die.THREE_VP) {
-                numberOfThrees++;
-            } else if (d.getValue() == Die.ATTACK) {
-                numberOfAttacks++;
-            } else if (d.getValue() == Die.HEAL) {
-                numberOfHeals++;
-            } else if (d.getValue() == Die.ENERGY) {
-                numberOfEnergies++;
-            } else {
-                System.out.println("Die value invalid");
-            }
-        }
-    } */
-
-    // !!!
-    private String processStringCommand(String str) {
-        System.out.println("processStringCommand");
-        if (str.equals("a")) {
-            System.out.println("a was read");
-        } else if (str.equals("e")) {
+    private void askIfWantToExit(String str) {
+        if (str.equals("e")) {
             System.out.println("Exiting game...");
             gameIsRunning = false;
         }
-        return str;
     }
 
     private void initPlayers() {
@@ -254,7 +228,7 @@ public class Game {
                 if (numPlayers > 1) {
                     initNotDone = false;
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("That wasn't an integer");
             }
         }

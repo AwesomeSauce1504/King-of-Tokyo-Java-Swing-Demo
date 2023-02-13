@@ -24,21 +24,18 @@ This project is of interest to me because I
 like *King of Tokyo* as a party game with 
 friends. 
 
-## Some user stories 
-Note: these user stories are essentially parts
-of the actual game
+## Some user stories
 - As a user, I want to be able to view my health,
 energy, and current victory points as well as 
 those of my opponents
 - As a user, I want to be able to purchase cards
 from an arbitrarily-sized deck and add them to
 my arbitrarily-sized collection
-- As a user, I want to be able to "roll" dice
-    and have them resolve to their correct effects
-  - Includes gaining victory points, dealing
-    damage, healing, gaining energy
-- As a user, I want to be able to re-roll an
-  arbitrary number of dice
+- As a user, I want to be able to reroll the shop by
+spending energy
+- As a user, I want to be able to "roll" dice 
+and gain energy from them in order to buy cards
+
 
 ## Stretch Goals
 - As a user, I want to have a "turn" system that
@@ -48,3 +45,5 @@ players are dead or once I reach a certain
 number of victory points
 - As a user, I want to be able to save the current
   game state and reload my game later on
+- As a user, I want every dice effect to actually 
+resolve (not just energy)
