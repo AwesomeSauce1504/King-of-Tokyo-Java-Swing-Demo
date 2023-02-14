@@ -64,55 +64,27 @@ public class DieCollection {
         return diceList;
     }
 
-    public void setDiceList(List<Die> diceList) {
-        this.diceList = diceList;
-    }
-
     public int getNumberOfOnes() {
         return numberOfOnes;
-    }
-
-    public void setNumberOfOnes(int numberOfOnes) {
-        this.numberOfOnes = numberOfOnes;
     }
 
     public int getNumberOfTwos() {
         return numberOfTwos;
     }
 
-    public void setNumberOfTwos(int numberOfTwos) {
-        this.numberOfTwos = numberOfTwos;
-    }
-
     public int getNumberOfThrees() {
         return numberOfThrees;
-    }
-
-    public void setNumberOfThrees(int numberOfThrees) {
-        this.numberOfThrees = numberOfThrees;
     }
 
     public int getNumberOfAttacks() {
         return numberOfAttacks;
     }
 
-    public void setNumberOfAttacks(int numberOfAttacks) {
-        this.numberOfAttacks = numberOfAttacks;
-    }
-
     public int getNumberOfHeals() {
         return numberOfHeals;
     }
 
-    public void setNumberOfHeals(int numberOfHeals) {
-        this.numberOfHeals = numberOfHeals;
-    }
-
     public int getNumberOfEnergies() {
         return numberOfEnergies;
-    }
-
-    public void setNumberOfEnergies(int numberOfEnergies) {
-        this.numberOfEnergies = numberOfEnergies;
     }
 }

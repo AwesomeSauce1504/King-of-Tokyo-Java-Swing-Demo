@@ -44,4 +44,33 @@ class PlayerTest {
         expectedOwnedCards.add(c2);
         assertEquals(expectedOwnedCards, p1.getOwnedCards());
     }
+
+    // DISCLAIMER: tests below here for getters/setters are because these methods are used in the Game class in ui and
+    //             are thus not tested because they are in ui
+
+    @Test
+    void getHealthTest() {
+        assertEquals(Player.MAX_HEALTH, p1.getHealth());
+
+    }
+
+    @Test
+    void getDiceAmountTest() {
+        assertEquals(Player.STARTING_DICE_AMOUNT, p1.getDiceAmount());
+    }
+
+    @Test
+    void getPlayerNumberTest() {
+        assertEquals(0, p1.getPlayerNumber());
+        Player p2 = new Player(16);
+        assertEquals(16, p2.getPlayerNumber());
+    }
+
+    @Test
+    void getVictoryPointsTest() {
+        assertEquals(0, p1.getVictoryPoints());
+        p1.setVictoryPoints(15);
+        assertEquals(15, p1.getVictoryPoints());
+    }
+
 }

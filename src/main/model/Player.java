@@ -7,6 +7,7 @@ import java.util.List;
 public class Player {
     public static final int MAX_HEALTH = 10;
     public static final int MAX_VP = 20;
+    public static final int STARTING_DICE_AMOUNT = 8;
     private int health;
     private int victoryPoints;
     private int energy;
@@ -25,7 +26,7 @@ public class Player {
         this.energy = 0;
         this.isInTokyo = false;
         this.ownedCards = new ArrayList<Card>();
-        this.diceAmount = 8;
+        this.diceAmount = STARTING_DICE_AMOUNT;
     }
 
     // EFFECTS: returns true if Player has enough energy to buy Card c
@@ -41,18 +42,6 @@ public class Player {
         ownedCards.add(c);
     }
 
-    /*public boolean getIsInTokyo() {
-        return isInTokyo;
-    }*/
-
-    /*public void changeHealth(int amount) {
-        health += amount;
-    }*/
-
-    /* public void changeIsInTokyo(boolean state) {
-        isInTokyo = state;
-    } */
-
     public int getHealth() {
         return health;
     }
@@ -65,31 +54,19 @@ public class Player {
         return ownedCards;
     }
 
-    public void setOwnedCards(List<Card> ownedCards) {
-        this.ownedCards = ownedCards;
-    }
-
     public int getDiceAmount() {
         return diceAmount;
-    }
-
-    public void setDiceAmount(int diceAmount) {
-        this.diceAmount = diceAmount;
     }
 
     public int getPlayerNumber() {
         return playerNumber;
     }
 
-    public void setPlayerNumber(int playerNumber) {
-        this.playerNumber = playerNumber;
-    }
-
     public int getVictoryPoints() {
         return victoryPoints;
     }
 
-    public void setVictoryPoints(int victoryPoints) {
-        this.victoryPoints = victoryPoints;
+    public void setVictoryPoints(int i) {
+        victoryPoints = i;
     }
 }

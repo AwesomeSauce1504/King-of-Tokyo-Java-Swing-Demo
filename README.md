@@ -24,7 +24,7 @@ This project is of interest to me because I
 like *King of Tokyo* as a party game with 
 friends. 
 
-## Some user stories
+## User stories
 - As a user, I want to be able to view my health,
 energy, and current victory points as well as 
 those of my opponents

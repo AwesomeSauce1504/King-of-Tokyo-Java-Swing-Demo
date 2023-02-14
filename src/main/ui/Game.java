@@ -7,9 +7,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-// Main game application
+// Main game ui application
 public class Game {
-    public static final int MAX_REROLLS = 3;
+    // public static final int MAX_REROLLS = 3;
     private Deck powerCardDeck;
     private Shop cardShop;
     // Tokyo board
@@ -18,53 +18,45 @@ public class Game {
     private int numPlayers;
     private int currentPlayerNumber;
     private Player currentPlayer;
-    private int rerollsUsed;
     private DieCollection allDice;
     private boolean gameIsRunning;
 
+    // EFFECTS: begins the game
     public Game() {
         runGame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initialize the deck, card shop, players, player number, rerolls, and dice
     private void initBoard() {
-        // initialize deck, shop, tokyo
         this.powerCardDeck = new Deck();
         this.cardShop = new Shop(powerCardDeck);
         this.playersInGame = new ArrayList<Player>();
         this.currentPlayerNumber = 0;
-        this.rerollsUsed = 0;
         this.allDice = new DieCollection(0);
-        // !!! Tokyo
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes all main game components, the players (after getting total players in game),
+    //          and runs the game loop
     private void runGame() {
-        gameIsRunning = true; // !!!
+        gameIsRunning = true;
         String strCommand;
         initBoard();
         initPlayers();
 
-        // some while loop to keep the game loop going
         while (gameIsRunning) {
             resetValues();
             displayPlayers();
             System.out.println("It is Player " + (currentPlayerNumber + 1) + "'s turn!");
-            // check for eliminations
             diceRollPhase();
             resolveDice();
-            // checkForEliminations();
-            // checkEnterTokyo();
-            // enter tokyo if applicable
-            // check for eliminations
             displayShop();
             askIfPlayerWantsToShop();
-            // shop
-            // check for eliminations
-            // end and loop
-            System.out.println("Would you like to exit game? (Enter e to exit)");
+            System.out.println("Would you like to exit game? (Enter e to exit, any other key to continue playing)");
             strCommand = input.next();
             askIfWantToExit(strCommand);
 
-            // gameIsRunning = false; // TEMP FOR TESTING
             if (gameIsOver()) {
                 gameIsRunning = false;
             }
@@ -73,6 +65,10 @@ public class Game {
         }
     }
 
+    // REQUIRES: currentPlayerNumber >= 0
+    // MODIFIES: this
+    // EFFECTS: set the currentPlayer to the next player if not all players have gone in a round,
+    //          else reset the player turn to the first player
     private void setUpNextPlayer() {
         if (currentPlayerNumber < playersInGame.size() - 1) {
             currentPlayerNumber++;
@@ -83,6 +79,8 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: ask the player if they want to shop. If they do, open the shop and give prompts for shopping
     private void askIfPlayerWantsToShop() {
         System.out.println("Would you like to buy any power cards? Enter y/n");
         if (yesNoInput()) {
@@ -93,6 +91,8 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays the shop and allows players to buy cards, reroll cards, or exit the shop
     private void openShop() {
         boolean checkingForValidInput = true;
         while (checkingForValidInput) {
@@ -118,6 +118,9 @@ public class Game {
         }
     }
 
+    // REQUIRES: i < Shop.SHOP_SIZE
+    // MODIFIES: this
+    // EFFECTS: buys card i in the shop if the current player can afford it
     private void tryToBuyCard(String s, int i) {
         System.out.println("Trying to buy card " + s);
         if (currentPlayer.canAfford(cardShop.getAvailableCards().get(i))) {
@@ -130,9 +133,11 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: rerolls the shop if the current player has enough energy to pay the reroll cost
     private void tryToReroll() {
         System.out.println("Trying to reroll");
-        if (currentPlayer.getEnergy() >= cardShop.REROLL_COST) {
+        if (currentPlayer.getEnergy() >= Shop.REROLL_COST) {
             System.out.println("Rerollling!");
             cardShop.reroll();
         } else {
@@ -140,18 +145,7 @@ public class Game {
         }
     }
 
-    private void checkForEliminations() {
-        for (Player p : playersInGame) {
-            if (p.getHealth() <= 0) {
-                playersInGame.remove(p);
-            }
-        }
-    }
-
-    private boolean gameOver() {
-        return playersInGame.size() <= 1;
-    }
-
+    // EFFECTS: display all player health, VPs, Energy, and owned cards
     private void displayPlayers() {
         System.out.println("--- Player statuses ---");
         for (Player player : playersInGame) {
@@ -159,17 +153,18 @@ public class Game {
             System.out.print("Health: " + player.getHealth() + " ");
             System.out.print("VPs: " + player.getVictoryPoints() + " ");
             System.out.print("Energy: " + player.getEnergy() + " \n");
-            for (Card card: player.getOwnedCards()) {
+            for (Card card : player.getOwnedCards()) {
                 System.out.println("\t" + card.getName() + ": " + card.getEffectsText());
             }
         }
         System.out.println("-----------------------");
     }
 
+    // EFFECTS: Displays every card in the shop that is available to buy with their name, cost, type, and effects
     private void displayShop() {
         System.out.println("Here's what is available in the shop:");
         for (int i = 0; i < Shop.SHOP_SIZE; i++) {
-            // System.out.println("Card " + (i + 1) + " ");
+            System.out.print((i + 1) + ": " + cardShop.getAvailableCards().get(i).getName() + " ");
             System.out.print("Cost: " + cardShop.getAvailableCards().get(i).getCost() + " ");
             if (cardShop.getAvailableCards().get(i).getIsKeep()) {
                 System.out.print("Type: KEEP ");
@@ -180,12 +175,16 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets values for the start of the next round. Ensures the correct number of dice are used and that the
+    //          scanner works
     private void resetValues() {
         input = new Scanner(System.in);
-        rerollsUsed = 0;
         allDice = new DieCollection(currentPlayer.getDiceAmount());
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays what the current player rolled and resolves all energy dice
     private void resolveDice() {
         printDiceResults();
         // resolve ones
@@ -196,13 +195,17 @@ public class Game {
         resolveEnergy();
     }
 
+    // MODIFIES: this
+    // EFFECTS: gives the current player energy equal to the number of Energy he rolled and displays their current
+    //          amount of energy
     private void resolveEnergy() {
         currentPlayer.changeEnergy(allDice.getNumberOfEnergies());
         System.out.println("Player " + (currentPlayerNumber + 1) + " has " + currentPlayer.getEnergy() + " energy!");
     }
 
+    // EFFECTS: displays all values of dice rolled
     private void printDiceResults() {
-        System.out.println("You rolled:");
+        System.out.print("You rolled: ");
         System.out.print(allDice.getNumberOfOnes() + " x [1], ");
         System.out.print(allDice.getNumberOfTwos() + " x [2], ");
         System.out.print(allDice.getNumberOfThrees() + " x [3], ");
@@ -211,6 +214,8 @@ public class Game {
         System.out.print("and " + allDice.getNumberOfEnergies() + " x [energy] \n");
     }
 
+    // MODIFIES: this
+    // EFFECTS: exits the game if e input is read by making gameIsRunning false
     private void askIfWantToExit(String str) {
         if (str.equals("e")) {
             System.out.println("Exiting game...");
@@ -218,6 +223,8 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: asks for the number of players in game and adds that many players to the game
     private void initPlayers() {
         boolean initNotDone = true;
         while (initNotDone) {
@@ -235,6 +242,8 @@ public class Game {
         addPlayers();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays how many players there are in game and adds them to the game
     private void addPlayers() {
         if (numPlayers > 1) {
             System.out.println("You have chosen a " + numPlayers + " player game!");
@@ -246,46 +255,25 @@ public class Game {
         }
     }
 
+    // EFFECTS: returns true if there is only one player in game
     private boolean gameIsOver() {
         return numPlayers <= 1;
     }
 
+    // EFFECTS: roll the current player's dice
     private void diceRollPhase() {
-        // roll dice
-        // check if enough rerolls remain
-        // check for reroll
-        //   - if yes reroll, roll dice again
-        //   - if no reroll, roll dice and loop diceRollPhase
-        // boolean checkingForReroll = true;
-        rollCurrentPlayerDice();
-
-        // checkForReroll();
-        /*
-        while (checkingForReroll) {
-            Scanner input = new Scanner(System.in);
-            String command = input.next();
-            command = command.toLowerCase();
-
-            if (yesNoInput()) {
-                System.out.println("");
-            }
-        } */
+        rollDiceCollection();
+        // Rerolling to be implemented
     }
 
-    private void rollCurrentPlayerDice() {
+    // MODIFIES: this
+    // EFFECTS: roll all dice in current diceCollection
+    private void rollDiceCollection() {
         System.out.println("Rolling dice!");
         allDice.rollAllDice();
     }
 
-    private void checkForReroll() {
-        if (rerollsUsed < MAX_REROLLS) {
-            System.out.println("Would you like to reroll any dice? Enter y/n");
-            // processReroll
-        } else {
-            System.out.println("Time to resolve dice!");
-        }
-    }
-
+    // EFFECTS: checks for y/n input and returns true/false respectively
     private boolean yesNoInput() {
         boolean checkingForValidInput = true;
         boolean result = false;
@@ -296,11 +284,9 @@ public class Game {
             command = command.toLowerCase();
 
             if (command.equals("n")) {
-                System.out.println("NO");
                 checkingForValidInput = false;
                 result = false;
             } else if (command.equals("y")) {
-                System.out.println("YES");
                 checkingForValidInput = false;
                 result = true;
             } else {
