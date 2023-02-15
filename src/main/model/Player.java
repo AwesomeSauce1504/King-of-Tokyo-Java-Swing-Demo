@@ -34,10 +34,14 @@ public class Player {
         return energy >= c.getCost();
     }
 
+    // MODIFIES: this
+    // EFFECTS: change energy by amount
     public void changeEnergy(int amount) {
         energy += amount;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds consumed card to ownedCards
     public void addCard(Card c) {
         ownedCards.add(c);
     }

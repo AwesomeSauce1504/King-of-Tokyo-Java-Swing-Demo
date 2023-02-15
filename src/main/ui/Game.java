@@ -9,10 +9,8 @@ import java.util.Scanner;
 
 // Main game ui application
 public class Game {
-    // public static final int MAX_REROLLS = 3;
     private Deck powerCardDeck;
     private Shop cardShop;
-    // Tokyo board
     private List<Player> playersInGame;
     private Scanner input;
     private int numPlayers;
