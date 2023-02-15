@@ -7,19 +7,10 @@ import java.util.List;
 // Represents a collection (deck) of card objects
 public class Deck {
     public static final Card[] ALL_EXISTING_CARDS = {
-            new Card("Name1", 1, "TEST1", false),
-            new Card("Name2", 2, "TEST2", false),
-            new Card("Name3", 3, "TEST3", true),
-            new Card("Name4", 4, "TEST4", false),
-            new Card("Name5", 5, "TEST5", true),
-            new Card("Name6", 6, "TEST6", false),
-            new Card("Name7", 7, "TEST7", true),
-            new Card("Name8", 8, "TEST8", false),
-            new Card("Name9", 9, "TEST9", true),
-
             new Card("Alien Metabolism", 3, "Buying cards costs you 1 less energy", true),
             new Card("Complete Destruction", 3,
-                    "If you roll 1-2-3-HEA-ATK-DEF gain 9 VP in addition to the regular results", true),
+                    "If you roll 1-2-3-HEAL-ATK-ENERGY "
+                            + "gain 9 VP in addition to the regular results", true),
             new Card("Energy Hoarder", 3,
                     "You gain 1 VP for every 6 energy you have at the end of your turn", true),
             new Card("Eater of the Dead", 4,

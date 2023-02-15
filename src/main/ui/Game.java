@@ -223,6 +223,7 @@ public class Game {
         }
     }
 
+    // REQUIRES: input is an integer
     // MODIFIES: this
     // EFFECTS: asks for the number of players in game and adds that many players to the game
     private void initPlayers() {

@@ -13,7 +13,7 @@ public class DieCollection {
     private int numberOfHeals;
     private int numberOfEnergies;
 
-    // Create a DieCollection containing numOfDice dice and set the count of roll results to 0
+    // EFFECTS: Create a DieCollection containing numOfDice dice and set the count of roll results to 0
     public DieCollection(int numOfDice) {
         diceList = new ArrayList<Die>();
 
@@ -28,6 +28,9 @@ public class DieCollection {
         numberOfEnergies = 0;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets all dice in diceList to random numbers from 0 to 5 and counts the number of instances of each
+    //          possible roll
     public void rollAllDice() {
         for (Die d : diceList) {
             d.rollDie();
@@ -35,6 +38,9 @@ public class DieCollection {
         updateDiceResults();
     }
 
+    // REQUIRES: d.getvalue() is an integer from 0 to 5
+    // MODIFIES: this
+    // EFFECTS: counts the number of each value of the dice in diceList
     private void updateDiceResults() {
         numberOfOnes = 0;
         numberOfTwos = 0;
@@ -54,7 +60,7 @@ public class DieCollection {
                 numberOfAttacks++;
             } else if (d.getValue() == Die.HEAL) {
                 numberOfHeals++;
-            } else if (d.getValue() == Die.ENERGY) {
+            } else {
                 numberOfEnergies++;
             }
         }
