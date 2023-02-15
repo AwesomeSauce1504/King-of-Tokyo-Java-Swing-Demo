@@ -41,7 +41,7 @@ public class DieCollectionTest {
             seenNumberOfThrees += dc1.getNumberOfThrees();
             seenNumberOfAttacks += dc1.getNumberOfAttacks();
             seenNumberOfHeals += dc1.getNumberOfHeals();
-            seenNumberOfEnergies += dc1.getNumberOfHeals();
+            seenNumberOfEnergies += dc1.getNumberOfEnergies();
         }
         assertTrue(seenNumberOfOnes > 0);
         assertTrue(seenNumberOfTwos > 0);
