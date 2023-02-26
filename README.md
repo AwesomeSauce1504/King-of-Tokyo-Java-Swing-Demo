@@ -35,7 +35,10 @@ my arbitrarily-sized collection
 spending energy
 - As a user, I want to be able to "roll" dice 
 and gain energy from them in order to buy cards
-
+- As a user, I want to be able to save the entire
+game-state (turn, player energy, cards owned, etc.)
+- As a user, I want to be able to reload a saved
+game-state
 
 ## Stretch Goals
 - As a user, I want to have a "turn" system that
@@ -43,7 +46,5 @@ still allows for out-of-turn effects
 - As a user, I want to win when either all other
 players are dead or once I reach a certain 
 number of victory points
-- As a user, I want to be able to save the current
-  game state and reload my game later on
 - As a user, I want every dice effect to actually 
 resolve (not just energy)
