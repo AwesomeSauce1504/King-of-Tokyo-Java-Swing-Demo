@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,12 @@ public class Shop {
         for (int i = 0; i < SHOP_SIZE; i++) {
             availableCards.add(deck.drawCard());
         }
+    }
+
+    public Shop() {
+        this.availableCards = new ArrayList<Card>();
+        // NOTE: must set deck and available cards manually
+        //       This constructor is used for rebuilding the shop from save file
     }
 
     // REQUIRES: i < availableCards.size()
@@ -41,11 +49,25 @@ public class Shop {
         }
     }
 
+    // !!!
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Card c: availableCards) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
+    }
+
     public List<Card> getAvailableCards() {
         return availableCards;
     }
 
     public Deck getDeck() {
         return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }

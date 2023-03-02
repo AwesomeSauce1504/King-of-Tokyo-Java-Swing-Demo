@@ -1,9 +1,10 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class GameManager {
     private Deck powerCardDeck;
@@ -63,6 +64,34 @@ public class GameManager {
         this.currentPlayer = playersInGame.get(currentPlayerNumber);
     }
 
+
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("players", playersInGameToJson());
+        json.put("power card deck", powerCardDeck.toJson());
+        json.put("card shop", cardShop.toJson());
+        json.put("number of players", numPlayers);
+        json.put("current player number", currentPlayerNumber);
+        json.put("all dice", allDice.toJson());
+        // NOTE: currentPlayer is not stored, it is just found via current player number index
+
+        return json;
+    }
+
+    // !!!
+    public JSONArray playersInGameToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p: playersInGame) {
+            jsonArray.put(p.toJson());
+        }
+        return jsonArray;
+    }
+
+
+
     // EFFECTS: returns true if there is only one player in game
     public boolean gameIsOver() {
         return numPlayers <= 1;
@@ -98,6 +127,14 @@ public class GameManager {
 
     public void setCurrentPlayerNumber(int i) {
         this.currentPlayerNumber = i;
+    }
+
+    public void setNumPlayers(int numPlayers) {
+        this.numPlayers = numPlayers;
+    }
+
+    public void setCardShop(Shop cardShop) {
+        this.cardShop = cardShop;
     }
 
     // REQUIRES: i < playersInGame.size()

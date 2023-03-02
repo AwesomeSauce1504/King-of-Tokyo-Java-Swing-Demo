@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.Random;
 
 // Represents an individual die with its value
@@ -26,7 +28,17 @@ public class Die {
         return value;
     }
 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("value", value);
+        return json;
+    }
+
     public int getValue() {
         return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

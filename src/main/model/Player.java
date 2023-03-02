@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +49,23 @@ public class Player {
         ownedCards.add(c);
     }
 
+    // !!!
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JSONArray jsonArrayOfCards = new JSONArray();
+        json.put("player number", playerNumber);
+        json.put("health", health);
+        json.put("victory points", victoryPoints);
+        json.put("energy", energy);
+        json.put("is in tokyo", isInTokyo);
+        for (Card c: ownedCards) {
+            jsonArrayOfCards.put(c.toJson());
+        }
+        json.put("owned cards", jsonArrayOfCards);
+        json.put("dice amount", diceAmount);
+        return json;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -72,5 +92,25 @@ public class Player {
 
     public void setVictoryPoints(int i) {
         victoryPoints = i;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setDiceAmount(int diceAmount) {
+        this.diceAmount = diceAmount;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    public void setInTokyo(boolean inTokyo) {
+        isInTokyo = inTokyo;
+    }
+
+    public void setOwnedCards(List<Card> ownedCards) {
+        this.ownedCards = ownedCards;
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents an individual card with its name, cost, effects, and keep/discard type
 public class Card {
     private String name;
@@ -13,6 +15,16 @@ public class Card {
         this.cost = cost;
         this.effectsText = effectsText;
         this.isKeep = isKeep;
+    }
+
+    // !!!
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("cost", cost);
+        json.put("effects text", effectsText);
+        json.put("is keep", isKeep);
+        return json;
     }
 
     public String getName() {

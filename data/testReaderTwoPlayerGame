@@ -1,0 +1,106 @@
+{
+    "number of players": 2,
+    "current player number": 0,
+    "players": [
+        {
+            "player number": 0,
+            "health": 10,
+            "victory points": 0,
+            "energy": 0,
+            "is in tokyo": false,
+            "owned cards": [],
+            "dice amount": 8
+        },
+        {
+            "player number": 0,
+            "health": 10,
+            "victory points": 0,
+            "energy": 0,
+            "is in tokyo": false,
+            "owned cards": [],
+            "dice amount": 8
+        }
+    ],
+    "power card deck": [
+        {
+            "name": "card 4",
+            "cost": 4,
+            "effects text": "card 4 text",
+            "is keep": false
+        },
+        {
+            "name": "card 5",
+            "cost": 5,
+            "effects text": "card 5 text",
+            "is keep": false
+        },
+        {
+            "name": "card 6",
+            "cost": 6,
+            "effects text": "card 6 text",
+            "is keep": true
+        },
+        {
+            "name": "card 7",
+            "cost": 7,
+            "effects text": "card 7 text",
+            "is keep": true
+        }
+    ],
+    "card shop": [
+        {
+            "name": "card 1",
+            "cost": 1,
+            "effects text": "card 1 text",
+            "is keep": false
+        },
+        {
+            "name": "card 2",
+            "cost": 2,
+            "effects text": "card 2 text",
+            "is keep": true
+        },
+        {
+            "name": "card 3",
+            "cost": 3,
+            "effects text": "card 3 text",
+            "is keep": false
+        }
+    ],
+    "current player": {
+        "player number": 0,
+        "health": 10,
+        "victory points": 0,
+        "energy": 0,
+        "is in tokyo": false,
+        "owned cards": [],
+        "dice amount": 8
+    },
+    "all dice": [
+        {
+            "value": 0
+        },
+        {
+            "value": 1
+        },
+        {
+            "value": 2
+        },
+        {
+            "value": 3
+        },
+        {
+            "value": 4
+        },
+        {
+            "value": 5
+        },
+        {
+            "value": 3
+        },
+        {
+            "value": 0
+        }
+    ],
+    "name": "King Of Tokyo"
+}

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -64,6 +66,16 @@ public class Deck {
         Card topCard = cardsInDeck.get(0);
         cardsInDeck.remove(0);
         return topCard;
+    }
+
+    // !!!
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Card c: cardsInDeck) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
     }
 
     public List<Card> getCardsInDeck() {

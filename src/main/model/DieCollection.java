@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,15 @@ public class DieCollection {
                 numberOfEnergies++;
             }
         }
+    }
+
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Die d: diceList) {
+            jsonArray.put(d.toJson());
+        }
+
+        return jsonArray;
     }
 
     public List<Die> getDiceList() {

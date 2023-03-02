@@ -1,19 +1,28 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Main game ui application
-public class Game {
+public class GameApp {
+    private static final String JSON_STORE = "./data/savefile.json";
     private Scanner input;
     private boolean gameIsRunning;
     private GameManager gm;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: begins the game
-    public Game() {
+    public GameApp() {
         gm = new GameManager();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runGame();
     }
 
@@ -22,7 +31,11 @@ public class Game {
     //          and runs the game loop
     private void runGame() {
         gameIsRunning = true;
-        initPlayers();
+        if (askIfWantToLoadSavedGame()) {
+            loadSavedGame();
+        } else {
+            initPlayers();
+        }
 
         while (gameIsRunning) {
             input = new Scanner(System.in);
@@ -33,12 +46,24 @@ public class Game {
             resolveDice();
             displayShop();
             askIfPlayerWantsToShop();
+            gm.setUpNextPlayer();
+            askIfWantToSave();
             askIfWantToExit();
             if (gm.gameIsOver()) {
                 gameIsRunning = false;
             }
-            gm.setUpNextPlayer();
 
+        }
+    }
+
+    private boolean askIfWantToLoadSavedGame() {
+        System.out.println("Would you like to load a saved game? Enter \"y\" to do so, \"n\" to start new game.");
+        if (yesNoInput()) {
+            System.out.println("Loading save file...");
+            return true;
+        } else {
+            System.out.println("Setting up new game...");
+            return false;
         }
     }
 
@@ -194,9 +219,9 @@ public class Game {
                 System.out.println("That wasn't an integer");
             }
         }
+        gm.addNPlayers(result);
         System.out.println("You have chosen a " + gm.getNumPlayers() + " player game!");
         System.out.println("Game start!");
-        gm.addNPlayers(result);
     }
 
     // MODIFIES: this
@@ -234,5 +259,37 @@ public class Game {
             }
         }
         return result;
+    }
+
+    private void askIfWantToSave() {
+        System.out.println("Would you like to save the game? Enter y/n");
+        if (yesNoInput()) {
+            saveGame();
+        }
+    }
+
+    // Modeled based on JsonSerializationDemo
+    // EFFECTS: saves the game to a file
+    private void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(gm);
+            jsonWriter.close();
+            System.out.println("Saved King Of Tokyo to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // Modeled based on JsonSerializationDemo
+    // MODIFIES: this
+    // EFFECTS: loads game (the gameManager) from save file
+    private void loadSavedGame() {
+        try {
+            gm = jsonReader.read();
+            System.out.println("Loaded King Of Tokyo from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
