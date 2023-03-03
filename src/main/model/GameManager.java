@@ -38,6 +38,7 @@ public class GameManager {
             currentPlayerNumber = 0;
             currentPlayer = playersInGame.get(0);
         }
+        resetValues();
     }
 
     // MODIFIES: this

@@ -36,10 +36,9 @@ public class GameApp {
         } else {
             initPlayers();
         }
-
+        gm.resetValues();
         while (gameIsRunning) {
             input = new Scanner(System.in);
-            gm.resetValues();
             displayPlayers();
             System.out.println("It is Player " + (gm.getCurrentPlayerNumber() + 1) + "'s turn!");
             diceRollPhase();
