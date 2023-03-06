@@ -28,8 +28,20 @@ public class Player {
         this.victoryPoints = 0;
         this.energy = 0;
         this.isInTokyo = false;
-        this.ownedCards = new ArrayList<Card>();
+        this.ownedCards = new ArrayList<>();
         this.diceAmount = STARTING_DICE_AMOUNT;
+    }
+
+    // EFFECTS: player is initialized with 10 health, 0 energy, 8 dice, and isInTokyo false
+    public Player(int playerNumber, int health, int victoryPoints, int energy, boolean isInTokyo,
+                  List<Card> ownedCards, int diceAmount) {
+        this.playerNumber = playerNumber;
+        this.health = health;
+        this.victoryPoints = victoryPoints;
+        this.energy = energy;
+        this.isInTokyo = isInTokyo;
+        this.ownedCards = ownedCards;
+        this.diceAmount = diceAmount;
     }
 
     // EFFECTS: returns true if Player has enough energy to buy Card c
@@ -58,7 +70,7 @@ public class Player {
         json.put("victory points", victoryPoints);
         json.put("energy", energy);
         json.put("is in tokyo", isInTokyo);
-        for (Card c: ownedCards) {
+        for (Card c : ownedCards) {
             jsonArrayOfCards.put(c.toJson());
         }
         json.put("owned cards", jsonArrayOfCards);
@@ -92,6 +104,10 @@ public class Player {
 
     public void setVictoryPoints(int i) {
         victoryPoints = i;
+    }
+
+    public boolean isInTokyo() {
+        return isInTokyo;
     }
 
     public void setHealth(int health) {

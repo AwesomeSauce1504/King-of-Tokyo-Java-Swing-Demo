@@ -1,0 +1,80 @@
+{
+    "number of players": 2,
+    "current player number": 0,
+    "players": [
+        {
+            "player number": 0,
+            "victory points": 0,
+            "is in tokyo": false,
+            "dice amount": 8,
+            "health": 10,
+            "owned cards": [],
+            "energy": 0
+        },
+        {
+            "player number": 1,
+            "victory points": 0,
+            "is in tokyo": false,
+            "dice amount": 8,
+            "health": 10,
+            "owned cards": [],
+            "energy": 0
+        }
+    ],
+    "all dice": [
+        {"value": 0},
+        {"value": 1},
+        {"value": 2},
+        {"value": 3},
+        {"value": 4},
+        {"value": 5},
+        {"value": 3},
+        {"value": 0}
+    ],
+    "card shop": [
+        {
+            "cost": 1,
+            "name": "card 1",
+            "is keep": false,
+            "effects text": "card 1 text"
+        },
+        {
+            "cost": 2,
+            "name": "card 2",
+            "is keep": true,
+            "effects text": "card 2 text"
+        },
+        {
+            "cost": 3,
+            "name": "card 3",
+            "is keep": false,
+            "effects text": "card 3 text"
+        }
+    ],
+    "power card deck": [
+        {
+            "cost": 4,
+            "name": "card 4",
+            "is keep": false,
+            "effects text": "card 4 text"
+        },
+        {
+            "cost": 5,
+            "name": "card 5",
+            "is keep": false,
+            "effects text": "card 5 text"
+        },
+        {
+            "cost": 6,
+            "name": "card 6",
+            "is keep": true,
+            "effects text": "card 6 text"
+        },
+        {
+            "cost": 7,
+            "name": "card 7",
+            "is keep": true,
+            "effects text": "card 7 text"
+        }
+    ]
+}

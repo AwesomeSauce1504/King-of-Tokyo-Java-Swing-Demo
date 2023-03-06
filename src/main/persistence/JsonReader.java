@@ -44,6 +44,7 @@ public class JsonReader {
     // EFFECTS: parses gameManager from JSON object and returns it
     private GameManager parseGameManager(JSONObject jsonObject) {
         GameManager gm = new GameManager();
+        gm.getPowerCardDeck().getCardsInDeck().clear();
         addNumPlayers(gm, jsonObject);
         addCurrentPlayerNumber(gm, jsonObject);
         addPlayers(gm, jsonObject);
@@ -77,6 +78,7 @@ public class JsonReader {
         int value = jsonObject.getInt("value");
         Die d = new Die();
         d.setValue(value);
+        gm.getAllDice().getDiceList().add(d);
     }
 
     private void addCardShop(GameManager gm, JSONObject jsonObject) {
@@ -144,11 +146,6 @@ public class JsonReader {
         List<Card> ownedCards = new ArrayList<>();
         JSONArray jsonArray = jsonObject.getJSONArray("owned cards");
 
-        for (Object json : jsonArray) {
-            JSONObject nextCard = (JSONObject) json;
-            addCardToPlayer(p, nextCard);
-        }
-
         int energy = jsonObject.getInt("energy");
         p.setVictoryPoints(victoryPoints);
         p.setInTokyo(isInTokyo);
@@ -156,6 +153,11 @@ public class JsonReader {
         p.setHealth(health);
         p.setOwnedCards(ownedCards);
         p.setEnergy(energy);
+
+        for (Object json : jsonArray) {
+            JSONObject nextCard = (JSONObject) json;
+            addCardToPlayer(p, nextCard);
+        }
 
         gm.getPlayersInGame().add(p);
     }
@@ -167,6 +169,6 @@ public class JsonReader {
         String effectsText = jsonObject.getString("effects text");
         Card c = new Card(name, cost, effectsText, isKeep);
 
-        player.addCard(c);
+        player.getOwnedCards().add(c);
     }
 }

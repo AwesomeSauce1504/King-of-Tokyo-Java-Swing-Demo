@@ -17,7 +17,7 @@ public class DieCollection {
 
     // EFFECTS: Create a DieCollection containing numOfDice dice and set the count of roll results to 0
     public DieCollection(int numOfDice) {
-        diceList = new ArrayList<Die>();
+        diceList = new ArrayList<>();
 
         for (int i = 0; i < numOfDice; i++) {
             this.diceList.add(new Die());

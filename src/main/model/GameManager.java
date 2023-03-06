@@ -138,6 +138,14 @@ public class GameManager {
         this.cardShop = cardShop;
     }
 
+    public void setPowerCardDeck(Deck powerCardDeck) {
+        this.powerCardDeck = powerCardDeck;
+    }
+
+    public void setAllDice(DieCollection allDice) {
+        this.allDice = allDice;
+    }
+
     // REQUIRES: i < playersInGame.size()
     public void setCurrentPlayer(int i) {
         this.currentPlayer = playersInGame.get(i);

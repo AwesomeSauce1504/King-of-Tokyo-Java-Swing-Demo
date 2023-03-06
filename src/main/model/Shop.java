@@ -14,7 +14,7 @@ public class Shop {
 
     // EFFECTS: set the shop's draw deck to deck and draw SHOP_SIZE cards and add them to availableCards
     public Shop(Deck deck) {
-        this.availableCards = new ArrayList<Card>();
+        this.availableCards = new ArrayList<>();
         this.deck = deck;
         for (int i = 0; i < SHOP_SIZE; i++) {
             availableCards.add(deck.drawCard());
@@ -22,7 +22,7 @@ public class Shop {
     }
 
     public Shop() {
-        this.availableCards = new ArrayList<Card>();
+        this.availableCards = new ArrayList<>();
         // NOTE: must set deck and available cards manually
         //       This constructor is used for rebuilding the shop from save file
     }

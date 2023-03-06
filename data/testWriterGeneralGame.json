@@ -4,10 +4,10 @@
     "players": [
         {
             "player number": 0,
-            "health": 10,
             "victory points": 10,
-            "energy": 0,
             "is in tokyo": false,
+            "dice amount": 8,
+            "health": 10,
             "owned cards": [
                 {
                     "cost": 2,
@@ -22,39 +22,37 @@
                     "effects text": "You gain 1 VP for every 6 energy you have at the end of your turn"
                 }
             ],
-            "dice amount": 8
+            "energy": 0
         },
         {
             "player number": 1,
-            "health": 3,
             "victory points": 19,
-            "energy": 2,
             "is in tokyo": false,
+            "dice amount": 8,
+            "health": 3,
             "owned cards": [],
-            "dice amount": 8
+            "energy": 2
         },
         {
             "player number": 2,
-            "health": 6,
             "victory points": 2,
-            "energy": 4,
             "is in tokyo": true,
-            "owned cards": [
-                {
-                    "cost": 3,
-                    "name": "Camouflage",
-                    "is keep": true,
-                    "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
-                }
-            ],
-            "dice amount": 9
+            "dice amount": 9,
+            "health": 6,
+            "owned cards": [{
+                "cost": 3,
+                "name": "Camouflage",
+                "is keep": true,
+                "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
+            }],
+            "energy": 4
         },
         {
             "player number": 3,
-            "health": 9,
             "victory points": 13,
-            "energy": 6,
             "is in tokyo": true,
+            "dice amount": 4,
+            "health": 9,
             "owned cards": [
                 {
                     "cost": 4,
@@ -75,7 +73,38 @@
                     "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
                 }
             ],
-            "dice amount": 4
+            "energy": 6
+        }
+    ],
+    "all dice": [
+        {"value": 0},
+        {"value": 3},
+        {"value": 0},
+        {"value": 2},
+        {"value": 3},
+        {"value": 1},
+        {"value": 5},
+        {"value": 4},
+        {"value": 2}
+    ],
+    "card shop": [
+        {
+            "cost": 4,
+            "name": "Eater of the Dead",
+            "is keep": true,
+            "effects text": "Gain 3 VP every time a Monster's health goes to 0"
+        },
+        {
+            "cost": 2,
+            "name": "Made in a Lab",
+            "is keep": true,
+            "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
+        },
+        {
+            "cost": 3,
+            "name": "Plot Twist",
+            "is keep": true,
+            "effects text": "Change one die to any result. Discard when used"
         }
     ],
     "power card deck": [
@@ -108,55 +137,6 @@
             "name": "Background Dweller",
             "is keep": true,
             "effects text": "You can always roll any 3s you have"
-        }
-    ],
-    "card shop": [
-        {
-            "cost": 4,
-            "name": "Eater of the Dead",
-            "is keep": true,
-            "effects text": "Gain 3 VP every time a Monster's health goes to 0"
-        },
-        {
-            "cost": 2,
-            "name": "Made in a Lab",
-            "is keep": true,
-            "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        }
-    ],
-    "all dice": [
-        {
-            "value": 0
-        },
-        {
-            "value": 3
-        },
-        {
-            "value": 0
-        },
-        {
-            "value": 2
-        },
-        {
-            "value": 3
-        },
-        {
-            "value": 1
-        },
-        {
-            "value": 5
-        },
-        {
-            "value": 4
-        },
-        {
-            "value": 2
         }
     ]
 }

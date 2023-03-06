@@ -34,7 +34,7 @@ public class Deck {
                     "+2 VPs and take control of Tokyo if you don't already control it", false),
             new Card("Heal", 3, "Heal 2 damage", false),
             new Card("Plot Twist", 3, "Change one die to any result. Discard when used", true),
-            new Card("Camouflage", 3, "If you take damage, roll a die for each damage point."
+            new Card("Camouflage", 3, "If you take damage, roll a die for each damage point. "
                     + "On a HEALTH, you do not take that damage point.", true),
             new Card("Frenzy", 7,
                     "When you purchase this card take another turn immediately after this one", false),
@@ -46,7 +46,7 @@ public class Deck {
             new Card("Shrink Ray", 6,
                     "When you deal damage, give each Monster damaged a Shrink token. "
                             + "A monster rolls one less die for each Shrink token. "
-                            + "A monster can get rid of a Shrink token with a HEALTH"
+                            + "A monster can get rid of a Shrink token with a HEALTH "
                             + "instead of using it to heal damage", true)
     };
 
