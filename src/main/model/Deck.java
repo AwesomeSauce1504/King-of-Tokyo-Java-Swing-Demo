@@ -59,7 +59,7 @@ public class Deck {
         Collections.shuffle(cardsInDeck);
     }
 
-    // REQUIRES: Deck is not empty
+    // REQUIRES: cardsInDeck is not empty
     // MODIFIES: this
     // EFFECTS: return the first item in the Deck and remove it from the Deck
     public Card drawCard() {
@@ -68,7 +68,8 @@ public class Deck {
         return topCard;
     }
 
-    // !!!
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns this as a JSONArray
     public JSONArray toJson() {
         JSONArray jsonArray = new JSONArray();
 

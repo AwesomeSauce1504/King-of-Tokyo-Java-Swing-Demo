@@ -32,7 +32,8 @@ public class Player {
         this.diceAmount = STARTING_DICE_AMOUNT;
     }
 
-    // EFFECTS: player is initialized with 10 health, 0 energy, 8 dice, and isInTokyo false
+    // EFFECTS: player is initialized with specified playerNumber, health, victoryPoints, energy, isInTokyo,
+    //          ownedCards, and diceAmount
     public Player(int playerNumber, int health, int victoryPoints, int energy, boolean isInTokyo,
                   List<Card> ownedCards, int diceAmount) {
         this.playerNumber = playerNumber;
@@ -61,7 +62,8 @@ public class Player {
         ownedCards.add(c);
     }
 
-    // !!!
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns this as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         JSONArray jsonArrayOfCards = new JSONArray();

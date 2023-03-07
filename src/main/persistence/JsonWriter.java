@@ -27,7 +27,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of gameManager to file
     public void write(GameManager gameManager) {
         JSONObject json = gameManager.toJson();
         saveToFile(json.toString(TAB));

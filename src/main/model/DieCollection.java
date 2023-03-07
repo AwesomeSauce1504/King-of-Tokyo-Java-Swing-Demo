@@ -68,6 +68,8 @@ public class DieCollection {
         }
     }
 
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns this as a JSONArray
     public JSONArray toJson() {
         JSONArray jsonArray = new JSONArray();
         for (Die d: diceList) {

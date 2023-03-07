@@ -67,7 +67,7 @@ public class GameManager {
 
 
     // Created based on the JsonSerializationDemo WorkRoom toJson method
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // EFFECTS: returns this as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("players", playersInGameToJson());
@@ -81,7 +81,8 @@ public class GameManager {
         return json;
     }
 
-    // !!!
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns playersInGame as a JSONArray
     public JSONArray playersInGameToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -90,8 +91,6 @@ public class GameManager {
         }
         return jsonArray;
     }
-
-
 
     // EFFECTS: returns true if there is only one player in game
     public boolean gameIsOver() {

@@ -56,16 +56,25 @@ public class JsonReader {
         return gm;
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses number of players from JSON object and adds it to gameManager
     private void addNumPlayers(GameManager gm, JSONObject jsonObject) {
         int numPlayers = jsonObject.getInt("number of players");
         gm.setNumPlayers(numPlayers);
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses current player number from JSON object and adds it to gameManager
     private void addCurrentPlayerNumber(GameManager gm, JSONObject jsonObject) {
         int currentPlayerNumber = jsonObject.getInt("current player number");
         gm.setCurrentPlayerNumber(currentPlayerNumber);
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses all dice from JSON object and adds them to gameManager DieCollection
     private void addAllDice(GameManager gm, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("all dice");
         for (Object json : jsonArray) {
@@ -74,6 +83,9 @@ public class JsonReader {
         }
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses a die from JSON object and adds them to gameManager dice
     private void addDie(GameManager gm, JSONObject jsonObject) {
         int value = jsonObject.getInt("value");
         Die d = new Die();
@@ -81,6 +93,9 @@ public class JsonReader {
         gm.getAllDice().getDiceList().add(d);
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses cards in shop from JSON object and adds them to gameManager cardShop
     private void addCardShop(GameManager gm, JSONObject jsonObject) {
         Shop shop = new Shop();
         JSONArray jsonArray = jsonObject.getJSONArray("card shop");
@@ -92,16 +107,18 @@ public class JsonReader {
         gm.setCardShop(shop);
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses a card in the card shop from JSON object and adds it to shop
     private void addCardToShop(Shop shop, JSONObject jsonObject) {
-        int cost = jsonObject.getInt("cost");
-        String name = jsonObject.getString("name");
-        boolean isKeep = jsonObject.getBoolean("is keep");
-        String effectsText = jsonObject.getString("effects text");
-        Card c = new Card(name, cost, effectsText, isKeep);
+        Card c = parseCard(jsonObject);
 
         shop.getAvailableCards().add(c);
     }
 
+
+    // MODIFIES: gm
+    // EFFECTS: parses deck cards from JSON object and adds it to gameManager
     private void addPowerCardDeck(GameManager gm, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("power card deck");
         for (Object json : jsonArray) {
@@ -110,20 +127,16 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: gm
+    // EFFECTS: parses a card in the deck from JSON object and adds it to deck
     private void addCardToDeck(GameManager gm, JSONObject jsonObject) {
-        int cost = jsonObject.getInt("cost");
-        String name = jsonObject.getString("name");
-        boolean isKeep = jsonObject.getBoolean("is keep");
-        String effectsText = jsonObject.getString("effects text");
-        Card c = new Card(name, cost, effectsText, isKeep);
+        Card c = parseCard(jsonObject);
 
         gm.getPowerCardDeck().getCardsInDeck().add(c);
     }
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-    // NEED MULTIPLE METHODS LIKE THIS ONE TO ADD ALL THE DIFFERENT PARTS OF THE GAME TO GM
     // MODIFIES: gm
-    // EFFECTS: parses thingies from JSON object and adds them to gameManager
+    // EFFECTS: parses players from JSON object and adds them to gameManager
     private void addPlayers(GameManager gm, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("players");
         for (Object json : jsonArray) {
@@ -132,10 +145,8 @@ public class JsonReader {
         }
     }
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-    // NEED MULTIPLE METHODS LIKE THIS ONE TO ADD ALL THE DIFFERENT PARTS OF THE GAME TO GM
     // MODIFIES: gm
-    // EFFECTS: parses thingy from JSON object and adds it to gameManager
+    // EFFECTS: parses player from JSON object and adds it to gameManager
     private void addPlayer(GameManager gm, JSONObject jsonObject) {
         int playerNumber = jsonObject.getInt("player number");
         Player p = new Player(playerNumber);
@@ -162,13 +173,20 @@ public class JsonReader {
         gm.getPlayersInGame().add(p);
     }
 
+    // MODIFIES: gm
+    // EFFECTS: parses card from JSON object and adds it to player
     private void addCardToPlayer(Player player, JSONObject jsonObject) {
+        Card c = parseCard(jsonObject);
+        player.getOwnedCards().add(c);
+    }
+
+    // EFFECTS: parses a jsonObject representing a card and returns the card
+    private Card parseCard(JSONObject jsonObject) {
         int cost = jsonObject.getInt("cost");
         String name = jsonObject.getString("name");
         boolean isKeep = jsonObject.getBoolean("is keep");
         String effectsText = jsonObject.getString("effects text");
         Card c = new Card(name, cost, effectsText, isKeep);
-
-        player.getOwnedCards().add(c);
+        return c;
     }
 }

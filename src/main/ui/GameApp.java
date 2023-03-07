@@ -55,6 +55,8 @@ public class GameApp {
         }
     }
 
+    // EFFECTS: asks the player if they want to load a saved game. If they do, open saved game. Otherwise, create a
+    //          new game
     private boolean askIfWantToLoadSavedGame() {
         System.out.println("Would you like to load a saved game? Enter \"y\" to do so, \"n\" to start new game.");
         if (yesNoInput()) {
@@ -260,6 +262,7 @@ public class GameApp {
         return result;
     }
 
+    // EFFECTS: asks the player if they want to save the game. If they do, save the game to a JSON file
     private void askIfWantToSave() {
         System.out.println("Would you like to save the game? Enter y/n");
         if (yesNoInput()) {

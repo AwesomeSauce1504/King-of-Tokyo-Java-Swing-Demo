@@ -28,6 +28,8 @@ public class Die {
         return value;
     }
 
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns this as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("value", value);

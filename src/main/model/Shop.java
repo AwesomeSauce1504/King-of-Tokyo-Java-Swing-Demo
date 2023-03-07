@@ -21,10 +21,11 @@ public class Shop {
         }
     }
 
+    // EFFECTS: creates an empty shop with no deck
+    // NOTE: must set deck and available cards manually
+    //       This constructor is used for rebuilding the shop from save file
     public Shop() {
         this.availableCards = new ArrayList<>();
-        // NOTE: must set deck and available cards manually
-        //       This constructor is used for rebuilding the shop from save file
     }
 
     // REQUIRES: i < availableCards.size()
@@ -49,7 +50,8 @@ public class Shop {
         }
     }
 
-    // !!!
+    // Created based on the JsonSerializationDemo WorkRoom toJson method
+    // EFFECTS: returns this as a JSONArray
     public JSONArray toJson() {
         JSONArray jsonArray = new JSONArray();
         for (Card c: availableCards) {
