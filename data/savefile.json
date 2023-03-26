@@ -1,6 +1,6 @@
 {
     "number of players": 3,
-    "current player number": 2,
+    "current player number": 1,
     "players": [
         {
             "player number": 0,
@@ -8,13 +8,21 @@
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
-            "owned cards": [{
-                "cost": 2,
-                "name": "Made in a Lab",
-                "is keep": true,
-                "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
-            }],
-            "energy": 2
+            "owned cards": [
+                {
+                    "cost": 6,
+                    "name": "Shrink Ray",
+                    "is keep": true,
+                    "effects text": "When you deal damage, give each Monster damaged a Shrink token. A monster rolls one less die for each Shrink token. A monster can get rid of a Shrink token with a HEALTH instead of using it to heal damage"
+                },
+                {
+                    "cost": 7,
+                    "name": "Extra Head",
+                    "is keep": true,
+                    "effects text": "You get 1 extra die"
+                }
+            ],
+            "energy": 4
         },
         {
             "player number": 1,
@@ -23,7 +31,7 @@
             "dice amount": 8,
             "health": 10,
             "owned cards": [],
-            "energy": 5
+            "energy": 8
         },
         {
             "player number": 2,
@@ -31,106 +39,59 @@
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
-            "owned cards": [],
-            "energy": 5
+            "owned cards": [
+                {
+                    "cost": 8,
+                    "name": "Energize",
+                    "is keep": false,
+                    "effects text": "+9 Energy"
+                },
+                {
+                    "cost": 2,
+                    "name": "Made in a Lab",
+                    "is keep": true,
+                    "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
+                }
+            ],
+            "energy": 6
         }
     ],
     "all dice": [
+        {"value": 5},
         {"value": 0},
+        {"value": 3},
+        {"value": 3},
+        {"value": 4},
         {"value": 0},
-        {"value": 0},
-        {"value": 0},
-        {"value": 0},
-        {"value": 0},
-        {"value": 0},
-        {"value": 0}
+        {"value": 5},
+        {"value": 2}
     ],
     "card shop": [
         {
             "cost": 3,
-            "name": "Alien Metabolism",
+            "name": "Camouflage",
             "is keep": true,
-            "effects text": "Buying cards costs you 1 less energy"
+            "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
         },
         {
-            "cost": 6,
-            "name": "Acid Attack",
+            "cost": 3,
+            "name": "Plot Twist",
             "is keep": true,
-            "effects text": "Deal 1 extra damage each turn (even when you don't otherwise attack)"
+            "effects text": "Change one die to any result. Discard when used"
         },
         {
-            "cost": 4,
-            "name": "Background Dweller",
-            "is keep": true,
-            "effects text": "You can always roll any 3s you have"
+            "cost": 3,
+            "name": "Heal",
+            "is keep": false,
+            "effects text": "Heal 2 damage"
         }
     ],
     "power card deck": [
         {
-            "cost": 8,
-            "name": "Energize",
-            "is keep": false,
-            "effects text": "+9 Energy"
-        },
-        {
-            "cost": 6,
-            "name": "Acid Attack",
-            "is keep": true,
-            "effects text": "Deal 1 extra damage each turn (even when you don't otherwise attack)"
-        },
-        {
-            "cost": 5,
-            "name": "Death From Above",
-            "is keep": false,
-            "effects text": "+2 VPs and take control of Tokyo if you don't already control it"
-        },
-        {
-            "cost": 4,
-            "name": "Eater of the Dead",
-            "is keep": true,
-            "effects text": "Gain 3 VP every time a Monster's health goes to 0"
-        },
-        {
             "cost": 3,
-            "name": "Complete Destruction",
+            "name": "Rapid Healing",
             "is keep": true,
-            "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
-        },
-        {
-            "cost": 3,
-            "name": "Camouflage",
-            "is keep": true,
-            "effects text": "If you take damage, roll a die for each damage point.On a HEALTH, you do not take that damage point."
-        },
-        {
-            "cost": 4,
-            "name": "Urbavore",
-            "is keep": true,
-            "effects text": "Gain 1 extra VP when beginning the turn in Tokyo.Deal 1 extra damage when dealing any damage from Tokyo"
-        },
-        {
-            "cost": 4,
-            "name": "Commuter Train",
-            "is keep": false,
-            "effects text": "+2 VPs"
-        },
-        {
-            "cost": 7,
-            "name": "Evacuation Orders",
-            "is keep": false,
-            "effects text": "All other Monsters lose 5 VPs"
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        },
-        {
-            "cost": 7,
-            "name": "Frenzy",
-            "is keep": false,
-            "effects text": "When you purchase this card take another turn immediately after this one"
+            "effects text": "Spend 2 Energy at any time to heal 1 damage"
         },
         {
             "cost": 5,
@@ -143,30 +104,6 @@
             "name": "National Guard",
             "is keep": false,
             "effects text": "+2 VPs and take 2 damage"
-        },
-        {
-            "cost": 5,
-            "name": "Alpha Monster",
-            "is keep": true,
-            "effects text": "Gain 1 VP when you attack"
-        },
-        {
-            "cost": 6,
-            "name": "Shrink Ray",
-            "is keep": true,
-            "effects text": "When you deal damage, give each Monster damaged a Shrink token. A monster rolls one less die for each Shrink token. A monster can get rid of a Shrink token with a HEALTHinstead of using it to heal damage"
-        },
-        {
-            "cost": 2,
-            "name": "Made in a Lab",
-            "is keep": true,
-            "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
-        },
-        {
-            "cost": 3,
-            "name": "Rapid Healing",
-            "is keep": true,
-            "effects text": "Spend 2 Energy at any time to heal 1 damage"
         },
         {
             "cost": 4,
@@ -175,34 +112,28 @@
             "effects text": "You can always roll any 3s you have"
         },
         {
-            "cost": 3,
-            "name": "Camouflage",
-            "is keep": true,
-            "effects text": "If you take damage, roll a die for each damage point.On a HEALTH, you do not take that damage point."
-        },
-        {
-            "cost": 5,
-            "name": "Death From Above",
-            "is keep": false,
-            "effects text": "+2 VPs and take control of Tokyo if you don't already control it"
-        },
-        {
             "cost": 7,
             "name": "Frenzy",
             "is keep": false,
             "effects text": "When you purchase this card take another turn immediately after this one"
         },
         {
-            "cost": 8,
-            "name": "Energize",
+            "cost": 4,
+            "name": "Commuter Train",
             "is keep": false,
-            "effects text": "+9 Energy"
+            "effects text": "+2 VPs"
+        },
+        {
+            "cost": 5,
+            "name": "Alpha Monster",
+            "is keep": true,
+            "effects text": "Gain 1 VP when you attack"
         },
         {
             "cost": 3,
-            "name": "Rapid Healing",
+            "name": "Complete Destruction",
             "is keep": true,
-            "effects text": "Spend 2 Energy at any time to heal 1 damage"
+            "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
         },
         {
             "cost": 3,
@@ -211,280 +142,10 @@
             "effects text": "You gain 1 VP for every 6 energy you have at the end of your turn"
         },
         {
-            "cost": 3,
-            "name": "Complete Destruction",
-            "is keep": true,
-            "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
-        },
-        {
-            "cost": 3,
-            "name": "Heal",
-            "is keep": false,
-            "effects text": "Heal 2 damage"
-        },
-        {
-            "cost": 7,
-            "name": "Extra Head",
-            "is keep": true,
-            "effects text": "You get 1 extra die"
-        },
-        {
-            "cost": 5,
-            "name": "Alpha Monster",
-            "is keep": true,
-            "effects text": "Gain 1 VP when you attack"
-        },
-        {
-            "cost": 7,
-            "name": "Evacuation Orders",
-            "is keep": false,
-            "effects text": "All other Monsters lose 5 VPs"
-        },
-        {
-            "cost": 3,
-            "name": "National Guard",
-            "is keep": false,
-            "effects text": "+2 VPs and take 2 damage"
-        },
-        {
-            "cost": 6,
-            "name": "Shrink Ray",
-            "is keep": true,
-            "effects text": "When you deal damage, give each Monster damaged a Shrink token. A monster rolls one less die for each Shrink token. A monster can get rid of a Shrink token with a HEALTHinstead of using it to heal damage"
-        },
-        {
-            "cost": 4,
-            "name": "Background Dweller",
-            "is keep": true,
-            "effects text": "You can always roll any 3s you have"
-        },
-        {
-            "cost": 2,
-            "name": "Made in a Lab",
-            "is keep": true,
-            "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
-        },
-        {
-            "cost": 4,
-            "name": "Urbavore",
-            "is keep": true,
-            "effects text": "Gain 1 extra VP when beginning the turn in Tokyo.Deal 1 extra damage when dealing any damage from Tokyo"
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        },
-        {
             "cost": 4,
             "name": "Eater of the Dead",
             "is keep": true,
             "effects text": "Gain 3 VP every time a Monster's health goes to 0"
-        },
-        {
-            "cost": 4,
-            "name": "Commuter Train",
-            "is keep": false,
-            "effects text": "+2 VPs"
-        },
-        {
-            "cost": 8,
-            "name": "Energize",
-            "is keep": false,
-            "effects text": "+9 Energy"
-        },
-        {
-            "cost": 3,
-            "name": "Rapid Healing",
-            "is keep": true,
-            "effects text": "Spend 2 Energy at any time to heal 1 damage"
-        },
-        {
-            "cost": 4,
-            "name": "Urbavore",
-            "is keep": true,
-            "effects text": "Gain 1 extra VP when beginning the turn in Tokyo.Deal 1 extra damage when dealing any damage from Tokyo"
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        },
-        {
-            "cost": 3,
-            "name": "Heal",
-            "is keep": false,
-            "effects text": "Heal 2 damage"
-        },
-        {
-            "cost": 4,
-            "name": "Eater of the Dead",
-            "is keep": true,
-            "effects text": "Gain 3 VP every time a Monster's health goes to 0"
-        },
-        {
-            "cost": 4,
-            "name": "Commuter Train",
-            "is keep": false,
-            "effects text": "+2 VPs"
-        },
-        {
-            "cost": 5,
-            "name": "Burrowing",
-            "is keep": true,
-            "effects text": "While you are in Tokyo, deal 1 extra damage.When you yield Tokyo, deal 1 damage to the monster taking it"
-        },
-        {
-            "cost": 7,
-            "name": "Evacuation Orders",
-            "is keep": false,
-            "effects text": "All other Monsters lose 5 VPs"
-        },
-        {
-            "cost": 5,
-            "name": "Alpha Monster",
-            "is keep": true,
-            "effects text": "Gain 1 VP when you attack"
-        },
-        {
-            "cost": 3,
-            "name": "Complete Destruction",
-            "is keep": true,
-            "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
-        },
-        {
-            "cost": 5,
-            "name": "Death From Above",
-            "is keep": false,
-            "effects text": "+2 VPs and take control of Tokyo if you don't already control it"
-        },
-        {
-            "cost": 3,
-            "name": "National Guard",
-            "is keep": false,
-            "effects text": "+2 VPs and take 2 damage"
-        },
-        {
-            "cost": 2,
-            "name": "Made in a Lab",
-            "is keep": true,
-            "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
-        },
-        {
-            "cost": 3,
-            "name": "Energy Hoarder",
-            "is keep": true,
-            "effects text": "You gain 1 VP for every 6 energy you have at the end of your turn"
-        },
-        {
-            "cost": 7,
-            "name": "Frenzy",
-            "is keep": false,
-            "effects text": "When you purchase this card take another turn immediately after this one"
-        },
-        {
-            "cost": 6,
-            "name": "Acid Attack",
-            "is keep": true,
-            "effects text": "Deal 1 extra damage each turn (even when you don't otherwise attack)"
-        },
-        {
-            "cost": 6,
-            "name": "Shrink Ray",
-            "is keep": true,
-            "effects text": "When you deal damage, give each Monster damaged a Shrink token. A monster rolls one less die for each Shrink token. A monster can get rid of a Shrink token with a HEALTHinstead of using it to heal damage"
-        },
-        {
-            "cost": 7,
-            "name": "Extra Head",
-            "is keep": true,
-            "effects text": "You get 1 extra die"
-        },
-        {
-            "cost": 4,
-            "name": "Urbavore",
-            "is keep": true,
-            "effects text": "Gain 1 extra VP when beginning the turn in Tokyo.Deal 1 extra damage when dealing any damage from Tokyo"
-        },
-        {
-            "cost": 7,
-            "name": "Evacuation Orders",
-            "is keep": false,
-            "effects text": "All other Monsters lose 5 VPs"
-        },
-        {
-            "cost": 7,
-            "name": "Frenzy",
-            "is keep": false,
-            "effects text": "When you purchase this card take another turn immediately after this one"
-        },
-        {
-            "cost": 5,
-            "name": "Alpha Monster",
-            "is keep": true,
-            "effects text": "Gain 1 VP when you attack"
-        },
-        {
-            "cost": 4,
-            "name": "Commuter Train",
-            "is keep": false,
-            "effects text": "+2 VPs"
-        },
-        {
-            "cost": 3,
-            "name": "Camouflage",
-            "is keep": true,
-            "effects text": "If you take damage, roll a die for each damage point.On a HEALTH, you do not take that damage point."
-        },
-        {
-            "cost": 8,
-            "name": "Energize",
-            "is keep": false,
-            "effects text": "+9 Energy"
-        },
-        {
-            "cost": 4,
-            "name": "Eater of the Dead",
-            "is keep": true,
-            "effects text": "Gain 3 VP every time a Monster's health goes to 0"
-        },
-        {
-            "cost": 3,
-            "name": "National Guard",
-            "is keep": false,
-            "effects text": "+2 VPs and take 2 damage"
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        },
-        {
-            "cost": 5,
-            "name": "Burrowing",
-            "is keep": true,
-            "effects text": "While you are in Tokyo, deal 1 extra damage.When you yield Tokyo, deal 1 damage to the monster taking it"
-        },
-        {
-            "cost": 3,
-            "name": "Complete Destruction",
-            "is keep": true,
-            "effects text": "If you roll 1-2-3-HEAL-ATK-ENERGY gain 9 VP in addition to the regular results"
-        },
-        {
-            "cost": 7,
-            "name": "Extra Head",
-            "is keep": true,
-            "effects text": "You get 1 extra die"
-        },
-        {
-            "cost": 3,
-            "name": "Rapid Healing",
-            "is keep": true,
-            "effects text": "Spend 2 Energy at any time to heal 1 damage"
         },
         {
             "cost": 3,
@@ -493,28 +154,28 @@
             "effects text": "Buying cards costs you 1 less energy"
         },
         {
-            "cost": 3,
-            "name": "Energy Hoarder",
-            "is keep": true,
-            "effects text": "You gain 1 VP for every 6 energy you have at the end of your turn"
-        },
-        {
             "cost": 5,
             "name": "Death From Above",
             "is keep": false,
             "effects text": "+2 VPs and take control of Tokyo if you don't already control it"
         },
         {
-            "cost": 3,
-            "name": "Heal",
+            "cost": 4,
+            "name": "Urbavore",
+            "is keep": true,
+            "effects text": "Gain 1 extra VP when beginning the turn in Tokyo.Deal 1 extra damage when dealing any damage from Tokyo"
+        },
+        {
+            "cost": 7,
+            "name": "Evacuation Orders",
             "is keep": false,
-            "effects text": "Heal 2 damage"
+            "effects text": "All other Monsters lose 5 VPs"
         },
         {
             "cost": 6,
-            "name": "Shrink Ray",
+            "name": "Acid Attack",
             "is keep": true,
-            "effects text": "When you deal damage, give each Monster damaged a Shrink token. A monster rolls one less die for each Shrink token. A monster can get rid of a Shrink token with a HEALTHinstead of using it to heal damage"
+            "effects text": "Deal 1 extra damage each turn (even when you don't otherwise attack)"
         }
     ]
 }

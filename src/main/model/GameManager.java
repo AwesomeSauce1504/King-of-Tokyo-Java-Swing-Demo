@@ -86,7 +86,7 @@ public class GameManager {
     public JSONArray playersInGameToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Player p: playersInGame) {
+        for (Player p : playersInGame) {
             jsonArray.put(p.toJson());
         }
         return jsonArray;

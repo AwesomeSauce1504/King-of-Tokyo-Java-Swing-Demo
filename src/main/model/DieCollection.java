@@ -72,7 +72,7 @@ public class DieCollection {
     // EFFECTS: returns this as a JSONArray
     public JSONArray toJson() {
         JSONArray jsonArray = new JSONArray();
-        for (Die d: diceList) {
+        for (Die d : diceList) {
             jsonArray.put(d.toJson());
         }
 

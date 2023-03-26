@@ -12,6 +12,12 @@ public class Die {
     public static final int ATTACK = 3;
     public static final int HEAL = 4;
     public static final int ENERGY = 5;
+    public static final String ONE_VP_TEXT = "1";
+    public static final String TWO_VP_TEXT = "2";
+    public static final String THREE_VP_TEXT = "3";
+    public static final String ATTACK_TEXT = "ATTACK";
+    public static final String HEAL_TEXT = "HEAL";
+    public static final String ENERGY_TEXT = "ENERGY";
 
     private int value;
     private Random rand = new Random();
@@ -34,6 +40,23 @@ public class Die {
         JSONObject json = new JSONObject();
         json.put("value", value);
         return json;
+    }
+
+    // EFFECTS: returns inputted die result as its value as a string
+    public String textValueOfDiceResult() {
+        if (this.value == Die.ONE_VP) {
+            return ONE_VP_TEXT;
+        } else if (value == Die.TWO_VP) {
+            return TWO_VP_TEXT;
+        } else if (value == Die.THREE_VP) {
+            return THREE_VP_TEXT;
+        } else if (value == Die.ATTACK) {
+            return ATTACK_TEXT;
+        } else if (value == Die.HEAL) {
+            return HEAL_TEXT;
+        } else {
+            return ENERGY_TEXT;
+        }
     }
 
     public int getValue() {

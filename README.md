@@ -48,3 +48,39 @@ players are dead or once I reach a certain
 number of victory points
 - As a user, I want every dice effect to actually 
 resolve (not just energy)
+
+## Instructions for Grader
+GENERAL RUNNING INSTRUCTIONS
+- Get into the main game by either loading the saved
+game or by starting a new game (input a number of 
+players to be in game)
+- Dice rolling automatically happens at the start of
+a player's turn. Going to the next player's turn by 
+clicking the "next player" button will roll the 
+dice for you. This is the only way to gain more 
+energy. The dice roll values are displayed
+along the center of the screen.
+- There is a reroll button that rerolls all shop cards
+for 2 energy. Use it if you want.
+- It is not recommended to load too many players in,
+but you can. It will be harder to see what happens,
+though. Scroll bars should automatically appear.
+
+SPECIFIC GRADED INFORMATION
+- You can generate the first required action related 
+to adding Xs to a Y by clicking one of the three 
+"buy card" buttons near the bottom left of the screen.
+Make sure that the current player has enough energy to
+purchase the card, otherwise nothing will happen. The
+card will then show up under the player's cards.
+- You can generate the second required action related 
+to adding Xs to a Y by pressing the "CLEAR PLAYER
+CARDS" button. This will clear all cards from
+all players.
+- You can locate my visual component by loading the
+game. You will see a photo of the King Of Tokyo
+box cover taken by me. 
+- You can save the state of my application by pressing
+the save button in game.
+- You can reload the state of my application by
+loading the saved game from the start screen.
