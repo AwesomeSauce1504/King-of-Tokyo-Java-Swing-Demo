@@ -20,9 +20,21 @@
                     "name": "Extra Head",
                     "is keep": true,
                     "effects text": "You get 1 extra die"
+                },
+                {
+                    "cost": 3,
+                    "name": "Plot Twist",
+                    "is keep": true,
+                    "effects text": "Change one die to any result. Discard when used"
+                },
+                {
+                    "cost": 3,
+                    "name": "Camouflage",
+                    "is keep": true,
+                    "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
                 }
             ],
-            "energy": 4
+            "energy": 9
         },
         {
             "player number": 1,
@@ -30,8 +42,13 @@
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
-            "owned cards": [],
-            "energy": 8
+            "owned cards": [{
+                "cost": 3,
+                "name": "Heal",
+                "is keep": false,
+                "effects text": "Heal 2 damage"
+            }],
+            "energy": 19
         },
         {
             "player number": 2,
@@ -53,46 +70,20 @@
                     "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
                 }
             ],
-            "energy": 6
+            "energy": 12
         }
     ],
     "all dice": [
-        {"value": 5},
         {"value": 0},
+        {"value": 2},
         {"value": 3},
         {"value": 3},
-        {"value": 4},
+        {"value": 1},
         {"value": 0},
-        {"value": 5},
-        {"value": 2}
+        {"value": 2},
+        {"value": 5}
     ],
     "card shop": [
-        {
-            "cost": 3,
-            "name": "Camouflage",
-            "is keep": true,
-            "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
-        },
-        {
-            "cost": 3,
-            "name": "Plot Twist",
-            "is keep": true,
-            "effects text": "Change one die to any result. Discard when used"
-        },
-        {
-            "cost": 3,
-            "name": "Heal",
-            "is keep": false,
-            "effects text": "Heal 2 damage"
-        }
-    ],
-    "power card deck": [
-        {
-            "cost": 3,
-            "name": "Rapid Healing",
-            "is keep": true,
-            "effects text": "Spend 2 Energy at any time to heal 1 damage"
-        },
         {
             "cost": 5,
             "name": "Burrowing",
@@ -101,10 +92,18 @@
         },
         {
             "cost": 3,
+            "name": "Rapid Healing",
+            "is keep": true,
+            "effects text": "Spend 2 Energy at any time to heal 1 damage"
+        },
+        {
+            "cost": 3,
             "name": "National Guard",
             "is keep": false,
             "effects text": "+2 VPs and take 2 damage"
-        },
+        }
+    ],
+    "power card deck": [
         {
             "cost": 4,
             "name": "Background Dweller",

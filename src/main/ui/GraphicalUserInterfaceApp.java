@@ -22,6 +22,8 @@ public class GraphicalUserInterfaceApp extends JFrame {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 700;
 
+    // MODIFIES: this
+    // EFFECTS: creates a new instance of the game with a title. Sets up fields and loads the start screen
     public GraphicalUserInterfaceApp() {
         super("King Of Tokyo");
         initializeGraphics();
@@ -29,12 +31,15 @@ public class GraphicalUserInterfaceApp extends JFrame {
         startScreen();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes an empty GameManager and a JsonReader and JsonWriter pointing to a save file
     private void initializeFields() {
         gm = new GameManager();
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
     }
 
+    // EFFECTS: sets up the screen frame layout
     private void initializeGraphics() {
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -44,6 +49,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         setVisible(true);
     }
 
+    // EFFECTS: creates the start screen with image, new game button, and load game button
     private void startScreen() {
         JPanel startScreenPanel = new JPanel();
         startScreenPanel.setLayout(new GridLayout(2, 1));
@@ -58,6 +64,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
     }
 
     // Designed based on TrafficLightGUI
+    // EFFECTS: returns the start screen image as a formatted JPanel
     private JPanel createStartScreenImagePanel() {
         ImageIcon imageIcon = new ImageIcon("./data/KingOfTokyoCropped.jpg");
         JLabel imageLabel = new JLabel();
@@ -73,7 +80,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         return imagePanel;
     }
 
-
+    // EFFECTS: returns a button that allows for new games to be created
     private JButton createNewGameButton() {
         JButton newGameButton = new JButton("New Game");
         newGameButton.addActionListener(new ActionListener() {
@@ -87,6 +94,9 @@ public class GraphicalUserInterfaceApp extends JFrame {
     }
 
     // created based on AlarmController
+    // MODIFIES: this
+    // EFFECTS: asks for the number of players for a new game (must be integer greater than 1).
+    //          Adds that many players to gm and runs the first player's turn
     private void setUpNewGame() {
         int result = 0;
         try {
@@ -104,6 +114,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         }
     }
 
+    // EFFECTS: returns a JButton that loads the saved game.
     private JButton createLoadButton() {
         JButton loadButton = new JButton("Load Saved Game");
         loadButton.addActionListener(new ActionListener() {
@@ -128,19 +139,25 @@ public class GraphicalUserInterfaceApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: clears previous content, rolls dice, and draws the screen updated
+    // EFFECTS: rolls dice and updates the screen
     private void runTurn() {
         getContentPane().removeAll();
         dicePhase();
         drawTurn();
     }
 
+    // MODIFIES: this
+    // EFFECTS: rolls a number of dice equal to the current player's dice amount and adds energy to that
+    //          player based on how many energy they rolled.
     private void dicePhase() {
         gm.resetValues();
         gm.getAllDice().rollAllDice();
         gm.resolveEnergy();
     }
 
+    // EFFECTS: draws the main game area with player statuses, dice rolled, and shop. Adds a next player
+    //          button to  the right of the screen, a save button at the top of the screen, and an exit
+    //          button at the bottom of the screen.
     private void drawTurn() {
         getContentPane().removeAll();
         drawGameArea();
@@ -152,7 +169,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         repaint();
     }
 
-
+    // EFFECTS: creates the main game area with players, dice rolled, and the cardshop.
     private void drawGameArea() {
         JPanel gameArea = new JPanel();
         gameArea.setLayout(new GridLayout(3, 1));
@@ -164,6 +181,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         setUpCardArea(gameArea);
     }
 
+    // EFFECTS: creates the player area with their current statuses
     private void setUpPlayerArea(JPanel gameArea) {
         JPanel playerArea = new JPanel();
         JScrollPane playerAreaScrollPane = new JScrollPane();
@@ -185,6 +203,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         gameArea.add(playerAreaScrollPane);
     }
 
+    // EFFECTS: returns information about the consumed player as a string
     private String createPlayerInfoText(Player player) {
         String result = "";
         if (player == gm.getCurrentPlayer()) {
@@ -202,6 +221,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         return result;
     }
 
+    // EFFECTS: creates the area to display all the dice rolls
     private void setUpDiceArea(JPanel gameArea) {
         JPanel diceArea = new JPanel();
         diceArea.setLayout(new GridLayout(1, gm.getCurrentPlayer().getDiceAmount()));
@@ -218,6 +238,8 @@ public class GraphicalUserInterfaceApp extends JFrame {
         gameArea.add(diceArea);
     }
 
+    // EFFECTS: creates the area for the shop, as well as a button to reroll and a button to clear all
+    //          cards owned by all players
     private void setUpCardArea(JPanel gameArea) {
         JPanel cardArea = new JPanel();
         cardArea.setLayout(new GridLayout(1, Shop.SHOP_SIZE + 2));
@@ -230,6 +252,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         gameArea.add(cardArea);
     }
 
+    // EFFECTS: creates a button that clears all cards owned by all players
     private void createButtonForClear(JPanel cardArea) {
         JButton clearButton = new JButton("CLEAR PLAYER CARDS");
         clearButton.addActionListener(new ActionListener() {
@@ -245,6 +268,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         cardArea.add(clearButton);
     }
 
+    // EFFECTS: creates a button that rerolls the shop
     private void createButtonForReroll(JPanel cardArea) {
         JButton rerollButton = new JButton("REROLL");
         rerollButton.addActionListener(new ActionListener() {
@@ -257,7 +281,6 @@ public class GraphicalUserInterfaceApp extends JFrame {
         cardArea.add(rerollButton);
     }
 
-
     // MODIFIES: this
     // EFFECTS: rerolls the shop if the current player has enough energy to pay the reroll cost
     private void tryToReroll() {
@@ -268,6 +291,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         }
     }
 
+    // EFFECTS: creates a button that allows players to purchase a card
     private void createButtonForCard(int i, JPanel cardArea) {
         JScrollPane cardScrollPane = new JScrollPane();
         JPanel cardPanel = new JPanel();
@@ -293,6 +317,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         cardArea.add(cardScrollPane);
     }
 
+    // EFFECTS: returns information about a card as a string
     private String createCardText(Card card, int i) {
         String result = "";
         result += "Card " + String.valueOf(i) + ": " + card.getName() + " \n";
@@ -319,7 +344,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         drawTurn();
     }
 
-
+    // EFFECTS: creates a button that runs the next player's turn
     private void createNextPlayerButton() {
         JButton nextPlayerButton = new JButton("Next Player");
         nextPlayerButton.addActionListener(new ActionListener() {
@@ -332,6 +357,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         add(nextPlayerButton, BorderLayout.EAST);
     }
 
+    // EFFECTS: creates a button that saves the game
     private void createSaveButton() {
         JButton saveButton = new JButton("Save Game");
         saveButton.addActionListener(new ActionListener() {
@@ -342,7 +368,6 @@ public class GraphicalUserInterfaceApp extends JFrame {
         });
         add(saveButton, BorderLayout.NORTH);
     }
-
 
     // Modeled based on JsonSerializationDemo
     // EFFECTS: saves the game to a file
@@ -356,6 +381,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         }
     }
 
+    // EFFECTS: creates a button that closes the GUI
     private void createExitButton() {
         JButton exitGameButton = new JButton("Exit Game");
         exitGameButton.addActionListener(new ActionListener() {

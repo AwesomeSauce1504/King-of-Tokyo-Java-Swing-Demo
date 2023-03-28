@@ -51,6 +51,8 @@ resolve (not just energy)
 
 ## Instructions for Grader
 GENERAL RUNNING INSTRUCTIONS
+- Run the game by running the GraphicalUserInterfaceApp's
+main method (not the Main class's main method)
 - Get into the main game by either loading the saved
 game or by starting a new game (input a number of 
 players to be in game)
@@ -68,13 +70,15 @@ though. Scroll bars should automatically appear.
 
 SPECIFIC GRADED INFORMATION
 - You can generate the first required action related 
-to adding Xs to a Y by clicking one of the three 
-"buy card" buttons near the bottom left of the screen.
-Make sure that the current player has enough energy to
-purchase the card, otherwise nothing will happen. The
+to adding Xs to a Y (adding Cards to a Player)
+by clicking one of the three"buy card" buttons near 
+the bottom left of the screen. Make sure that the 
+current player has enough energy to purchase the 
+card, otherwise nothing will happen. The
 card will then show up under the player's cards.
 - You can generate the second required action related 
-to adding Xs to a Y by pressing the "CLEAR PLAYER
+to adding Xs to a Y (clearing all Cards owned by all
+Players) by pressing the "CLEAR PLAYER
 CARDS" button. This will clear all cards from
 all players.
 - You can locate my visual component by loading the
