@@ -89,6 +89,10 @@ the save button in game.
 loading the saved game from the start screen.
 
 ## Phase 4: Task 2
+NOTE: log will only print if the Exit Game button is 
+pressed. Closing the window by pressing the "X" at 
+the top right will not result in log printing.
+
 Sun Apr 09 20:48:47 PDT 2023
 Player 2 bought Card: Rapid Healing
 
