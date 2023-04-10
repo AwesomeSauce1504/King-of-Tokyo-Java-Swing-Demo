@@ -49,10 +49,9 @@ number of victory points
 - As a user, I want every dice effect to actually 
 resolve (not just energy)
 
-## Instructions for Grader
+## Instructions for Grader (Phase 3)
 GENERAL RUNNING INSTRUCTIONS
-- Run the game by running the GraphicalUserInterfaceApp's
-main method (not the Main class's main method)
+- Run the game by running the main method 
 - Get into the main game by either loading the saved
 game or by starting a new game (input a number of 
 players to be in game)
@@ -88,3 +87,72 @@ box cover taken by me.
 the save button in game.
 - You can reload the state of my application by
 loading the saved game from the start screen.
+
+## Phase 4: Task 2
+Sun Apr 09 20:48:47 PDT 2023
+Player 2 bought Card: Rapid Healing
+
+Sun Apr 09 20:48:50 PDT 2023
+Player 2 bought Card: National Guard
+
+Sun Apr 09 20:48:54 PDT 2023
+Player 1 bought Card: Frenzy
+
+Sun Apr 09 20:48:56 PDT 2023
+All player cards cleared.
+
+Sun Apr 09 20:49:00 PDT 2023
+Player 2 bought Card: Background Dweller
+
+Sun Apr 09 20:49:00 PDT 2023
+Player 2 bought Card: Alpha Monster
+
+Sun Apr 09 20:49:01 PDT 2023
+Player 2 bought Card: Commuter Train
+
+Sun Apr 09 20:49:03 PDT 2023
+Player 3 bought Card: Burrowing
+
+Sun Apr 09 20:49:06 PDT 2023
+All player cards cleared.
+
+Sun Apr 09 20:49:07 PDT 2023
+Player 1 bought Card: Complete Destruction
+
+Sun Apr 09 20:49:16 PDT 2023
+Player 3 bought Card: Alien Metabolism
+
+Sun Apr 09 20:49:16 PDT 2023
+Player 3 bought Card: Energy Hoarder
+
+## Phase 4: Task 3
+If I had more time to work on the project, I would 
+improve my design by using a HashMap in my 
+DieCollection class instead of 6 different integer 
+fields to store dice results (as my TA suggested). 
+This is beneficial because it reduces repetition 
+in the code. This would be implemented by removing
+all the fields referring to numberOfXs and instead
+adding in a HashMap that maps certain dice values 
+to HashMap keys. Another refactoring I could make 
+is moving the createPlayerInfoText() method from 
+GraphicalUserInterfaceApp into Player and 
+createCardText() to Card. This would improve 
+cohesion and fulfill the single responsibility 
+principle better because those two methods have 
+more to do with a Player and Card object rather 
+than the GUI. This would also make these methods 
+testable in the test suite. I could also refactor 
+the GameManger class by removing one of either the
+currentPlayer field or currentPlayerNumber field 
+in GameManager because they essentially fulfill 
+the same purpose of tracking which player is the 
+current player. This would be beneficial because 
+it removes a redundant field. However, it may 
+also be disadvantageous because the fields are 
+clear statements and easy inputs when each one 
+is needed. If the refactoring were to be done, 
+the currentPlayer field would be replaced by calls 
+to playersInGame.get(index) or the 
+currentPlayerNumber would be replaced by 
+playersInGame.get(index).getPlayerNumber(). 

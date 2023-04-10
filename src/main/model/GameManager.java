@@ -65,6 +65,15 @@ public class GameManager {
         this.currentPlayer = playersInGame.get(currentPlayerNumber);
     }
 
+    // MODIFIES: this
+    // EFFECTS: clears all cards owned by all players and log the event
+    public void clearAllPlayerOwnedCards() {
+        for (Player player : playersInGame) {
+            player.getOwnedCards().clear();
+        }
+        EventLog.getInstance().logEvent(new Event("All player cards cleared."));
+    }
+
 
     // Created based on the JsonSerializationDemo WorkRoom toJson method
     // EFFECTS: returns this as a JSONObject
@@ -149,4 +158,5 @@ public class GameManager {
     public void setCurrentPlayer(int i) {
         this.currentPlayer = playersInGame.get(i);
     }
+
 }

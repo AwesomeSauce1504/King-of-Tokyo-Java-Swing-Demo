@@ -92,4 +92,26 @@ public class GameManagerTest {
         assertFalse(gm1.gameIsOver());
     }
 
+    @Test
+    void clearAllPlayerOwnedCardsTest() {
+        Card c1 = new Card("Card 1", 1, "card 1 text", true);
+        Card c2 = new Card("Card 2", 4, "card 2 text", false);
+        Card c3 = new Card("Card 3", 3, "card 3 text", false);
+        Card c4 = new Card("Card 4", 2, "card 4 text", true);
+        gm1.addNPlayers(4);
+        gm1.getPlayersInGame().get(0).addCard(c1);
+        gm1.getPlayersInGame().get(1).addCard(c2);
+        gm1.getPlayersInGame().get(1).addCard(c3);
+        gm1.getPlayersInGame().get(3).addCard(c4);
+        assertEquals(1, gm1.getPlayersInGame().get(0).getOwnedCards().size());
+        assertEquals(2, gm1.getPlayersInGame().get(1).getOwnedCards().size());
+        assertEquals(0, gm1.getPlayersInGame().get(2).getOwnedCards().size());
+        assertEquals(1, gm1.getPlayersInGame().get(3).getOwnedCards().size());
+        gm1.clearAllPlayerOwnedCards();
+        assertEquals(0, gm1.getPlayersInGame().get(0).getOwnedCards().size());
+        assertEquals(0, gm1.getPlayersInGame().get(1).getOwnedCards().size());
+        assertEquals(0, gm1.getPlayersInGame().get(2).getOwnedCards().size());
+        assertEquals(0, gm1.getPlayersInGame().get(3).getOwnedCards().size());
+    }
+
 }

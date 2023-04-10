@@ -46,8 +46,15 @@ public class Player {
     }
 
     // EFFECTS: returns true if Player has enough energy to buy Card c
+    //          If the player can afford, log the event as a purchase
     public boolean canAfford(Card c) {
-        return energy >= c.getCost();
+        if (energy >= c.getCost()) {
+            EventLog.getInstance().logEvent(new Event("Player " + (this.playerNumber + 1)
+                    + " bought Card: " + c.getName()));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // MODIFIES: this

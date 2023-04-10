@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -258,9 +259,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Player player : gm.getPlayersInGame()) {
-                    player.getOwnedCards().clear();
-                }
+                gm.clearAllPlayerOwnedCards();
                 drawTurn();
             }
         });
@@ -387,15 +386,12 @@ public class GraphicalUserInterfaceApp extends JFrame {
         exitGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next.toString() + "\n");
+                }
                 System.exit(0);
             }
         });
         add(exitGameButton, BorderLayout.SOUTH);
     }
-
-    // EFFECTS: runs the game application
-    public static void main(String[] args) {
-        new GraphicalUserInterfaceApp();
-    }
-
 }
