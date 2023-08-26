@@ -1,6 +1,6 @@
 {
     "number of players": 3,
-    "current player number": 1,
+    "current player number": 2,
     "players": [
         {
             "player number": 0,
@@ -68,20 +68,32 @@
                     "name": "Made in a Lab",
                     "is keep": true,
                     "effects text": "When purchasing cards you can peek at and purchase the top card of the deck"
+                },
+                {
+                    "cost": 3,
+                    "name": "National Guard",
+                    "is keep": false,
+                    "effects text": "+2 VPs and take 2 damage"
+                },
+                {
+                    "cost": 4,
+                    "name": "Background Dweller",
+                    "is keep": true,
+                    "effects text": "You can always roll any 3s you have"
                 }
             ],
-            "energy": 12
+            "energy": 5
         }
     ],
     "all dice": [
         {"value": 0},
-        {"value": 2},
-        {"value": 3},
-        {"value": 3},
         {"value": 1},
-        {"value": 0},
         {"value": 2},
-        {"value": 5}
+        {"value": 1},
+        {"value": 3},
+        {"value": 2},
+        {"value": 2},
+        {"value": 1}
     ],
     "card shop": [
         {
@@ -97,25 +109,13 @@
             "effects text": "Spend 2 Energy at any time to heal 1 damage"
         },
         {
-            "cost": 3,
-            "name": "National Guard",
-            "is keep": false,
-            "effects text": "+2 VPs and take 2 damage"
-        }
-    ],
-    "power card deck": [
-        {
-            "cost": 4,
-            "name": "Background Dweller",
-            "is keep": true,
-            "effects text": "You can always roll any 3s you have"
-        },
-        {
             "cost": 7,
             "name": "Frenzy",
             "is keep": false,
             "effects text": "When you purchase this card take another turn immediately after this one"
-        },
+        }
+    ],
+    "power card deck": [
         {
             "cost": 4,
             "name": "Commuter Train",
