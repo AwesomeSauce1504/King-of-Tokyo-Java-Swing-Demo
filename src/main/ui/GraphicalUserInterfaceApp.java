@@ -154,6 +154,7 @@ public class GraphicalUserInterfaceApp extends JFrame {
         gm.resetValues();
         gm.getAllDice().rollAllDice();
         gm.resolveEnergy();
+        gm.resolveVPDice();
     }
 
     // EFFECTS: draws the main game area with player statuses, dice rolled, and shop. Adds a next player
@@ -210,6 +211,9 @@ public class GraphicalUserInterfaceApp extends JFrame {
         if (player == gm.getCurrentPlayer()) {
             result += "--- CURRENT PLAYER ---\n";
         }
+        if (player.isInTokyo()) {
+            result += "--- IN TOKYO ---\n";
+        }
         result += "Player " + String.valueOf(player.getPlayerNumber() + 1) + " \n"
                 + "Health : " + player.getHealth() + " \n"
                 + "VPs: " + player.getVictoryPoints() + " \n"
@@ -217,7 +221,9 @@ public class GraphicalUserInterfaceApp extends JFrame {
                 + "Cards: \n";
 
         for (Card card : player.getOwnedCards()) {
-            result += "- " + card.getName() + ": " + card.getEffectsText() + "\n";
+            if (card.getIsKeep()) {
+                result += "- " + card.getName() + ": " + card.getEffectsText() + "\n";
+            }
         }
         return result;
     }

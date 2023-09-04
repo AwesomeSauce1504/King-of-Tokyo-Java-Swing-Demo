@@ -77,6 +77,45 @@ public class GameManagerTest {
     }
 
     @Test
+    void resolveVPDiceTest() {
+        gm1.addNPlayers(1);
+        gm1.resetValues();
+        assertEquals(0, gm1.getCurrentPlayer().getVictoryPoints());
+        for (int i = 0; i < 100; i++) {
+            int prevVPValue = gm1.getCurrentPlayer().getVictoryPoints();
+            int expectedVPValue = 0;
+            gm1.getAllDice().rollAllDice();
+
+            int numOfOnes = gm1.getAllDice().getNumberOfOnes();
+            int numOfTwos = gm1.getAllDice().getNumberOfTwos();
+            int numOfThrees = gm1.getAllDice().getNumberOfThrees();
+            if (numOfOnes >= 3) {
+                numOfOnes -= 3;
+                expectedVPValue += 1 + numOfOnes;
+            }
+            if (numOfTwos >= 3) {
+                numOfTwos -= 3;
+                expectedVPValue += 2 + numOfTwos;
+            }
+            if (numOfThrees >= 3) {
+                numOfThrees -= 3;
+                expectedVPValue += 3 + numOfThrees;
+            }
+            gm1.resolveVPDice();
+            assertEquals(prevVPValue + expectedVPValue, gm1.getCurrentPlayer().getVictoryPoints());
+        }
+    }
+
+    @Test
+    void resolveOneDiceTypeTest() {
+        gm1.addNPlayers(1);
+        gm1.resetValues();
+        assertEquals(0, gm1.getCurrentPlayer().getVictoryPoints());
+        gm1.resolveOneDiceType(2, 33);
+        assertEquals(2 + 30, gm1.getCurrentPlayer().getVictoryPoints());
+    }
+
+    @Test
     void addNPlayersTest() {
         assertEquals(0, gm1.getNumPlayers());
         gm1.addNPlayers(3);

@@ -30,8 +30,22 @@ class PlayerTest {
 
     @Test
     void changeEnergyTest() {
+        p1.changeEnergy(0);
+        assertEquals(0, p1.getEnergy());
         p1.changeEnergy(15);
         assertEquals(15, p1.getEnergy());
+        p1.changeEnergy(-100);
+        assertEquals(0, p1.getEnergy());
+    }
+
+    @Test
+    void changeVPsTest() {
+        p1.changeVPs(0);
+        assertEquals(0, p1.getVictoryPoints());
+        p1.changeVPs(5);
+        assertEquals(5, p1.getVictoryPoints());
+        p1.changeVPs(-6);
+        assertEquals(0, p1.getVictoryPoints());
     }
 
     @Test

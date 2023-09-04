@@ -54,6 +54,24 @@ public class GameManager {
         currentPlayer.changeEnergy(allDice.getNumberOfEnergies());
     }
 
+    // MODIFIES: this
+    // EFFECTS: resolves the current player VP dice
+    public void resolveVPDice() {
+        resolveOneDiceType(1, allDice.getNumberOfOnes());
+        resolveOneDiceType(2, allDice.getNumberOfTwos());
+        resolveOneDiceType(3, allDice.getNumberOfThrees());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: give VPs to current player if they rolled 3 of a kind, +1 for each additional die of that kind
+    public void resolveOneDiceType(int dieValue, int numOfDice) {
+        if (numOfDice >= 3) {
+            numOfDice -= 3;
+            currentPlayer.changeVPs(dieValue);
+            currentPlayer.changeVPs(numOfDice);
+        }
+    }
+
     // REQUIRES: n >= 0
     // MODIFIES: this
     // EFFECTS: displays how many players there are in game and adds them to the game

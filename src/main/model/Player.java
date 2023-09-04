@@ -58,9 +58,21 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: change energy by amount
+    // EFFECTS: change energy by amount, prevents going below 0 energy
     public void changeEnergy(int amount) {
         energy += amount;
+        if (energy < 0) {
+            energy = 0;
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: change VPs by amount, prevents going below 0 VPs
+    public void changeVPs(int amount) {
+        victoryPoints += amount;
+        if (victoryPoints < 0) {
+            victoryPoints = 0;
+        }
     }
 
     // MODIFIES: this
