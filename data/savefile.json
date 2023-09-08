@@ -4,7 +4,7 @@
     "players": [
         {
             "player number": 0,
-            "victory points": 0,
+            "victory points": 2,
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
@@ -34,11 +34,11 @@
                     "effects text": "If you take damage, roll a die for each damage point. On a HEALTH, you do not take that damage point."
                 }
             ],
-            "energy": 9
+            "energy": 13
         },
         {
             "player number": 1,
-            "victory points": 0,
+            "victory points": 6,
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
@@ -48,11 +48,11 @@
                 "is keep": false,
                 "effects text": "Heal 2 damage"
             }],
-            "energy": 19
+            "energy": 23
         },
         {
             "player number": 2,
-            "victory points": 0,
+            "victory points": 4,
             "is in tokyo": false,
             "dice amount": 8,
             "health": 10,
@@ -82,18 +82,18 @@
                     "effects text": "You can always roll any 3s you have"
                 }
             ],
-            "energy": 5
+            "energy": 9
         }
     ],
     "all dice": [
-        {"value": 0},
-        {"value": 1},
-        {"value": 2},
-        {"value": 1},
         {"value": 3},
-        {"value": 2},
-        {"value": 2},
-        {"value": 1}
+        {"value": 0},
+        {"value": 0},
+        {"value": 4},
+        {"value": 4},
+        {"value": 3},
+        {"value": 3},
+        {"value": 4}
     ],
     "card shop": [
         {

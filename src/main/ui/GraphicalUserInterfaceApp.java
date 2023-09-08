@@ -155,6 +155,9 @@ public class GraphicalUserInterfaceApp extends JFrame {
         gm.getAllDice().rollAllDice();
         gm.resolveEnergy();
         gm.resolveVPDice();
+        gm.resolveHealDice();
+        // resolve ATK
+        // check for victory condition
     }
 
     // EFFECTS: draws the main game area with player statuses, dice rolled, and shop. Adds a next player

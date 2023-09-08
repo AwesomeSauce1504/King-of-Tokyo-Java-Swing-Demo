@@ -81,6 +81,16 @@ public class Player {
         ownedCards.add(c);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds n health to playerHealth, prevents going above max health
+    public void changeHealth(int n) {
+        if (health + n > MAX_HEALTH) {
+            health = MAX_HEALTH;
+        } else {
+            health += n;
+        }
+    }
+
     // Created based on the JsonSerializationDemo WorkRoom toJson method
     // EFFECTS: returns this as a JSONObject
     public JSONObject toJson() {
@@ -97,6 +107,10 @@ public class Player {
         json.put("owned cards", jsonArrayOfCards);
         json.put("dice amount", diceAmount);
         return json;
+    }
+
+    public boolean isDead() {
+        return health <= 0;
     }
 
     public int getHealth() {

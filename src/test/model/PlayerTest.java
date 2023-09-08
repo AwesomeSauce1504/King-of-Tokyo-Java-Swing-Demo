@@ -59,6 +59,30 @@ class PlayerTest {
         assertEquals(expectedOwnedCards, p1.getOwnedCards());
     }
 
+    @Test
+    void changeHealthTest() {
+        assertEquals(10, p1.getHealth());
+        p1.changeHealth(1);
+        assertEquals(10, p1.getHealth());
+        p1.changeHealth(-6);
+        assertEquals(4, p1.getHealth());
+        p1.changeHealth(3);
+        assertEquals(7, p1.getHealth());
+        p1.changeHealth(4);
+        assertEquals(10, p1.getHealth());
+    }
+
+    @Test
+    void isDeadTest() {
+        assertFalse(p1.isDead());
+        p1.setHealth(1);
+        assertFalse(p1.isDead());
+        p1.setHealth(0);
+        assertTrue(p1.isDead());
+        p1.setHealth(-1);
+        assertTrue(p1.isDead());
+    }
+
     // DISCLAIMER: tests below here for getters/setters are because these methods are used in the Game class in ui and
     //             are thus not tested because they are in ui
 

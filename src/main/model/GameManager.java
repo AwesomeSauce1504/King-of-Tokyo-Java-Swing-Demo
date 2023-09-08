@@ -72,6 +72,14 @@ public class GameManager {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds health to current player equal to the number of HEAL they rolled if they are not in Tokyo
+    public void resolveHealDice() {
+        if (!currentPlayer.isInTokyo()) {
+            currentPlayer.changeHealth(allDice.getNumberOfHeals());
+        }
+    }
+
     // REQUIRES: n >= 0
     // MODIFIES: this
     // EFFECTS: displays how many players there are in game and adds them to the game
@@ -92,6 +100,25 @@ public class GameManager {
         EventLog.getInstance().logEvent(new Event("All player cards cleared."));
     }
 
+    // EFFECTS: return true if a player in game is dead
+    public Player identifyFirstDeadPlayer() {
+        for (Player player : playersInGame) {
+            if (player.getHealth() <= 0) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes all players who are dead from playersInGame and updates the player count
+    public void removeEliminatedPlayers() {
+        Player firstDeadPlayer = identifyFirstDeadPlayer();
+        while (firstDeadPlayer != null) {
+            playersInGame.remove(firstDeadPlayer);
+            firstDeadPlayer = identifyFirstDeadPlayer();
+        }
+    }
 
     // Created based on the JsonSerializationDemo WorkRoom toJson method
     // EFFECTS: returns this as a JSONObject
@@ -119,9 +146,17 @@ public class GameManager {
         return jsonArray;
     }
 
-    // EFFECTS: returns true if there is only one player in game
+    // EFFECTS: return true if a player has over 20 VPs or there is one (or less) players left
     public boolean gameIsOver() {
-        return numPlayers <= 1;
+        if (playersInGame.size() <= 1) {
+            return true;
+        }
+        for (Player p : playersInGame) {
+            if (p.getVictoryPoints() >= Player.MAX_VP) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getCurrentPlayerNumber() {
@@ -133,7 +168,7 @@ public class GameManager {
     }
 
     public int getNumPlayers() {
-        return numPlayers;
+        return playersInGame.size();
     }
 
     public List<Player> getPlayersInGame() {

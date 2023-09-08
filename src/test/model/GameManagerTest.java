@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,10 +117,47 @@ public class GameManagerTest {
     }
 
     @Test
+    void resolveHealDiceTest() {
+        gm1.addNPlayers(1);
+        gm1.resetValues();
+        gm1.getCurrentPlayer().setHealth(5);
+        Random rand = new Random();
+
+        for (int i = 0; i < 100; i++) {
+            int prevHealthValue = gm1.getCurrentPlayer().getHealth();
+            gm1.getAllDice().rollAllDice();
+            int numOfHeals = gm1.getAllDice().getNumberOfHeals();
+            gm1.resolveHealDice();
+
+            if (numOfHeals + prevHealthValue >= 10) {
+                assertEquals(10, gm1.getCurrentPlayer().getHealth());
+            } else {
+                assertEquals(numOfHeals + prevHealthValue, gm1.getCurrentPlayer().getHealth());
+            }
+            gm1.getCurrentPlayer().setHealth(rand.nextInt(11));
+        }
+
+        gm1.getCurrentPlayer().setInTokyo(true);
+        
+        for (int i = 0; i < 100; i++) {
+            int prevHealthValue = gm1.getCurrentPlayer().getHealth();
+            gm1.getAllDice().rollAllDice();
+            gm1.resolveHealDice();
+            int newHealthValue = gm1.getCurrentPlayer().getHealth();
+
+            assertEquals(newHealthValue, prevHealthValue);
+            gm1.getCurrentPlayer().setHealth(rand.nextInt(11));
+        }
+
+    }
+
+    @Test
     void addNPlayersTest() {
         assertEquals(0, gm1.getNumPlayers());
         gm1.addNPlayers(3);
         assertEquals(3, gm1.getNumPlayers());
+        assertEquals(0, gm1.getPlayersInGame().get(0).getPlayerNumber());
+        assertEquals(2, gm1.getPlayersInGame().get(2).getPlayerNumber());
     }
 
     @Test
@@ -129,6 +167,10 @@ public class GameManagerTest {
         assertTrue(gm1.gameIsOver());
         gm1.addNPlayers(1);
         assertFalse(gm1.gameIsOver());
+        gm1.getPlayersInGame().get(0).setVictoryPoints(20);
+        assertTrue(gm1.gameIsOver());
+        gm1.getPlayersInGame().get(1).setVictoryPoints(20);
+        assertTrue(gm1.gameIsOver());
     }
 
     @Test
@@ -151,6 +193,24 @@ public class GameManagerTest {
         assertEquals(0, gm1.getPlayersInGame().get(1).getOwnedCards().size());
         assertEquals(0, gm1.getPlayersInGame().get(2).getOwnedCards().size());
         assertEquals(0, gm1.getPlayersInGame().get(3).getOwnedCards().size());
+    }
+
+    @Test
+    void checkIfAnyPlayersEliminatedTest() {
+        gm1.addNPlayers(4);
+        gm1.removeEliminatedPlayers();
+        assertEquals(4, gm1.getNumPlayers());
+        gm1.getPlayersInGame().get(2).setHealth(0);
+        gm1.getPlayersInGame().get(0).setHealth(-33);
+        gm1.removeEliminatedPlayers();
+        assertEquals(2, gm1.getNumPlayers());
+    }
+
+    @Test
+    void getNumPlayersTest() {
+        assertEquals(0, gm1.getNumPlayers());
+        gm1.addNPlayers(3);
+        assertEquals(3, gm1.getNumPlayers());
     }
 
 }
